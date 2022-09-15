@@ -1,0 +1,22 @@
+name: flutter_dashboard_demo
+
+packages:
+  - apps/**
+
+scripts:
+  # Dependencies
+  pub:get:
+    run: |
+      dart pub global run melos exec --fail-fast --  "flutter pub get"
+    description: Run `pub get` in all the packages
+
+  gen_l10n:
+    run: |
+      dart pub global run melos exec --fail-fast -- \
+        flutter gen-l10n
+    description: Run `flutter gen-l10n` for a specific package.
+    select-package:
+      depends-on: flutter_localizations
+
+  post_clean: >
+    dart pub global run melos exec -- "flutter clean"
