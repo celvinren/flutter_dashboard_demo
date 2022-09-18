@@ -168,6 +168,6 @@ Runner.ipa
 apps/demo_app/android/app/google-services.json
 apps/demo_app/ios/firebase_app_id_file.json
 apps/demo_app/ios/Runner/GoogleService-Info.plist
-apps/demo_app/lib/firebase_options.dart
+apps/demo_app/lib/default_firebase_options.dart
 apps/demo_app/macos/firebase_app_id_file.json
 apps/demo_app/macos/Runner/GoogleService-Info.plist

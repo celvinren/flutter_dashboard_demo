@@ -56,5 +56,39 @@ scripts:
     description: |
       Format all.
 
+  # Quality - metrics
+  metrics:all:
+    run: |
+      dart pub global run melos run metrics:analyze --no-select && \
+      dart pub global run melos run metrics:unused:code --no-select && \
+      dart pub global run melos run metrics:unused:files --no-select && \
+      dart pub global run melos run metrics:unnecessary:nullable --no-select
+    description: Run all static analysis checks.
+    
+  metrics:analyze:
+    run: |
+      dart pub global run melos exec --fail-fast -- \
+        flutter pub run dart_code_metrics:metrics analyze lib --fatal-style --fatal-performance --fatal-warnings --set-exit-on-violation-level=warning
+    description: Run all static analysis checks.
+
+  metrics:unused:code:
+    run: |
+      dart pub global run melos exec --fail-fast -- \
+        flutter pub run dart_code_metrics:metrics check-unused-code lib --fatal-unused
+    description: Run all static analysis checks.
+
+  metrics:unused:files:
+    run: |
+      dart pub global run melos exec --fail-fast -- \
+        flutter pub run dart_code_metrics:metrics check-unused-files lib --fatal-unused
+    description: Run all static analysis checks.
+
+  metrics:unnecessary:nullable:
+    run: |
+      dart pub global run melos exec --fail-fast -- \
+        flutter pub run dart_code_metrics:metrics check-unnecessary-nullable lib --fatal-found
+    description: Run all static analysis checks.
+
+  
   post_clean: >
     dart pub global run melos exec -- "flutter clean"
