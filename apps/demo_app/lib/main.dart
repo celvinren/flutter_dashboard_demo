@@ -1,9 +1,9 @@
-import 'package:demo_app/app_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'app_localizations.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -15,33 +15,39 @@ void main() async {
   runApp(const MyApp());
 }
 
+/// This is the main application widget.
 class MyApp extends StatelessWidget {
+  /// This widget is the root of your application.
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en', ''),
-      ],
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+  Widget build(final BuildContext context) => MaterialApp(
+        title: 'Flutter Demo',
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en', ''),
+        ],
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      );
 }
 
+///
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  /// This widget is the home page of your application.
+  const MyHomePage({
+    required this.title,
+    super.key,
+  });
 
+  /// The title of the page.
   final String title;
 
   @override
@@ -58,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final localization = useLocalization(context);
 
     return Scaffold(
@@ -70,7 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '${localization.dashboardDemo}\n You have pushed the button this many times:',
+              '${localization.dashboardDemo}\n You have pushed the '
+              'button this many times:',
               textAlign: TextAlign.center,
             ),
             Text(

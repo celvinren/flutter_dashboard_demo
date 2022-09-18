@@ -9,18 +9,16 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
-  cupertino_icons: ^1.0.2
   firebase_core: ^1.22.0
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: ^0.17.0
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
-  flutter_test:
-    sdk: flutter
+  dependency_validator: ^3.2.2
+  # flutter_test:
+  #   sdk: flutter
 
 flutter:
   uses-material-design: true

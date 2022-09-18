@@ -18,5 +18,43 @@ scripts:
     select-package:
       depends-on: flutter_localizations
 
+  # Quality - lint
+  lint:all:
+    run: |
+      dart pub global run melos run lint:analyze --no-select && \
+      dart pub global run melos run lint:dependency --no-select && \
+      dart pub global run melos run lint:format:check --no-select
+    description: Run all static analysis checks.
+
+  lint:analyze:
+    run: |
+      dart pub global run melos exec --fail-fast -- \
+        flutter analyze . --fatal-infos --no-pub
+    description: |
+      Run `flutter analyze` in all packages.
+       - Note: you can also rely on your IDEs Dart Analysis / Issues window.
+
+  lint:dependency:
+    run: |
+      dart pub global run melos exec --fail-fast -- \
+        flutter pub run dependency_validator
+    description: |
+      Run `dart analyze` in all packages.
+       - Note: you can also rely on your IDEs Dart Analysis / Issues window.
+
+  lint:format:check:
+    run: |
+      dart pub global run melos exec --fail-fast -- \
+        dart format -o none --summary none --set-exit-if-changed .
+    description: |
+      Format all check.
+
+  lint:format:
+    run: |
+      dart pub global run melos exec --fail-fast -- \
+        dart format .
+    description: |
+      Format all.
+
   post_clean: >
     dart pub global run melos exec -- "flutter clean"

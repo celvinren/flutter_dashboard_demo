@@ -1,0 +1,171 @@
+include: all_lint_rules.yaml
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  plugins:
+    - dart_code_metrics
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/l10n/*.dart"
+    - "**/coverage_test.dart"
+    - "lib/generated_plugin_registrant.dart"
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+  errors:
+    todo: ignore
+    # Otherwise cause the import of all_lint_rules to warn because of some rules conflicts.
+    # We explicitly enabled even conflicting rules and are fixing the conflict
+    # in this file
+    included_file_warning: ignore
+    invalid_annotation_target: ignore
+
+linter:
+  rules:
+    # Too verbose with little value, and this is taken care of by the Flutter devtool anyway.
+    diagnostic_describe_all_properties: false
+
+    # Conflicts with `prefer_single_quotes`
+    # Single quotes are easier to type and don't compromise on readability.
+    prefer_double_quotes: false
+
+    # Conflicts with `omit_local_variable_types` and other rules.
+    # As per Dart guidelines, we want to avoid unnecessary types to make the code
+    # more readable.
+    # See https://dart.dev/guides/language/effective-dart/design#avoid-type-annotating-initialized-local-variables
+    always_specify_types: false
+
+    # Incompatible with `prefer_final_locals`
+    # Having immutable local variables makes larger functions more predictable
+    # so we will use `prefer_final_locals` instead.
+    unnecessary_final: false
+
+    # This project doesn't use Flutter-style todos
+    flutter_style_todos: false
+
+    # Conflicts with disabling `implicit-dynamic`
+    avoid_annotating_with_dynamic: false
+
+    # Conflicts with `prefer_relative_imports`
+    always_use_package_imports: false
+
+    # Key can be defined when needed
+    use_key_in_widget_constructors: false
+
+    # Conflicts with 'prefer_final_parameters'
+    avoid_final_parameters: false
+
+    # Conflicts with localizations for flutter_gen package
+    depend_on_referenced_packages: false
+
+    # Conflicts with Clean Architecture
+    one_member_abstracts: false
+
+    # This project uses environment variables
+    do_not_use_environment: false
+
+dart_code_metrics:
+  anti-patterns:
+    - long-method
+  metrics:
+    cyclomatic-complexity: 51
+    lines-of-code: 500
+    maintainability-index: 10
+    maximum-nesting-level: 5
+    number-of-methods: 35
+    number-of-parameters: 25
+    source-lines-of-code: 200
+    weight-of-class: 0
+    technical-debt:
+      threshold: 0
+      todo-cost: 0
+      deprecated-annotations-cost: 0
+      ignore-cost: 1
+      ignore-for-file-cost: 1
+      as-dynamic-cost: 1
+      file-nullsafety-migration-cost: 1
+  metrics-exclude:
+    - "test/**"
+    - "integration_test/**"
+  rules:
+    - avoid-ignoring-return-values:
+      exclude:
+        - test/**
+      ignored-names:
+        - ensureInitialized
+        - initializeApp
+    - avoid-late-keyword:
+        exclude:
+          - test/**
+    - avoid-nested-conditional-expressions:
+        acceptable-level: 3
+    - avoid-non-null-assertion:
+        exclude:
+          - test/**
+    - avoid-unnecessary-type-assertions
+    - avoid-unused-parameters
+    - binary-expression-operand-order
+    - double-literal-format
+    - member-ordering-extended:
+        alphabetize: true
+        order:
+          - constructors
+    - newline-before-return
+    - no-boolean-literal-compare
+    - no-empty-block:
+        exclude:
+          - test/**
+    - no-equal-then-else
+    - no-magic-number:
+        exclude:
+          - test/**
+    - no-object-declaration
+    - prefer-conditional-expressions
+    - prefer-correct-identifier-length:
+        exceptions:
+          - i
+          - j
+          - k
+          - x
+          - y
+          - id
+          - dx
+          - dy
+    - prefer-correct-type-name
+    - prefer-first
+    - prefer-last
+    - prefer-match-file-name:
+        exclude:
+          - test/**
+    - prefer-trailing-comma
+    - always-remove-listener
+    - avoid-returning-widgets
+    - avoid-unnecessary-setstate
+    - avoid-wrapping-in-padding
+    - prefer-const-border-radius
+    - prefer-extracting-callbacks
+    - prefer-single-widget-per-file:
+        ignore-private-widgets: true
+    - avoid-throw-in-catch-block
+    - avoid-unnecessary-type-casts
+    - avoid-missing-enum-constant-in-map
+    - avoid-global-state
+    - avoid-unrelated-type-assertions
+    - avoid-dynamic:
+        exclude:
+          - test/**
+    - prefer-async-await
+    - avoid-border-all
+    - format-comment
+    - avoid-collection-methods-with-unrelated-types
+    - ban-name:
+        entries:
+          - ident: StatefulWidget
+            description: Use StatelessWidget or HookWidget
+        exclude:
+          - test/**
+    - prefer-immediate-return
+   
