@@ -2,6 +2,7 @@ name: flutter_dashboard_demo
 
 packages:
   - apps/**
+  - packages/**
 
 scripts:
   # Dependencies
