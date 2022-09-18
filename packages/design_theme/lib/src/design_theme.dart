@@ -17,7 +17,7 @@ abstract class _DesignTheme {
         titleLarge: TextStyle(
           color: color,
           fontSize: _titleLargeFontSize,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         ),
         titleMedium: TextStyle(
           color: color,
@@ -43,7 +43,7 @@ abstract class _DesignTheme {
         bodySmall: TextStyle(
           color: color,
           fontSize: _bodySmallFontSize,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         ),
         labelLarge: TextStyle(
           color: color,
