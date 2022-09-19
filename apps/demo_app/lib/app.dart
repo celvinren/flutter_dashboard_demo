@@ -1,3 +1,4 @@
+import 'package:design_theme/design_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -21,9 +22,8 @@ class App extends StatelessWidget {
         supportedLocales: const [
           Locale('en', ''),
         ],
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: const DesignTheme().light,
+        darkTheme: const DesignTheme().dark,
         home: const HomePage(title: 'Flutter Demo Home Page'),
       );
 }

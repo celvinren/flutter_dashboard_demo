@@ -30,6 +30,13 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
+        },
+        {
+            "name": "demo_design_system (debug mode)",
+            "cwd": "apps/demo_design_system",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug"
         }
     ]
 }

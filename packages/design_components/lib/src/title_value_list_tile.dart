@@ -15,7 +15,7 @@ class TitleValueListTile extends StatelessWidget {
   ///
   final String value;
 
-  static const _lineHeight = 18.0;
+  static const _lineHeight = 1.5;
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);

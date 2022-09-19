@@ -1,3 +1,4 @@
+import 'package:design_theme/design_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'home_page.dart';
@@ -10,9 +11,8 @@ class App extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: const DesignTheme().light,
+        darkTheme: const DesignTheme().dark,
         home: const HomePage(title: 'Flutter Demo Home Page'),
       );
 }

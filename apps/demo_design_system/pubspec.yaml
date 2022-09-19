@@ -9,6 +9,10 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
+  design_components:
+    path: ../../packages/design_components
+  design_theme:
+    path: ../../packages/design_theme
   flutter:
     sdk: flutter
 

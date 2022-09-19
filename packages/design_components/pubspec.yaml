@@ -2,6 +2,7 @@ name: design_components
 description: A new Flutter package project.
 version: 0.0.1
 homepage: dashboard_demo.com
+publish_to: 'none'
 
 environment:
   sdk: ">=2.18.1 <3.0.0"
@@ -12,16 +13,21 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
+  alchemist: ^0.5.0
   dart_code_metrics: ^4.18.3
   dependency_validator: ^3.2.2
-  # flutter_lints: ^2.0.0
-  # flutter_test:
-  #   sdk: flutter
+  design_theme:
+    path: ../design_theme
+  flutter_test:
+    sdk: flutter
+  golden_toolkit: ^0.13.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
-flutter: null
+flutter: 
+  uses-material-design: true
+
 # To add assets to your package, add an assets section, like this:
 # assets:
 #   - images/a_dot_burr.jpeg

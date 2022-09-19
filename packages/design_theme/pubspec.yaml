@@ -2,6 +2,7 @@ name: design_theme
 description: A new Flutter package project.
 version: 0.0.1
 homepage: dashboard_demo.com
+publish_to: 'none'
 
 environment:
   sdk: ">=2.18.1 <3.0.0"
