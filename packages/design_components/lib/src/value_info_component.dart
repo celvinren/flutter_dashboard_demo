@@ -28,7 +28,7 @@ class ValueInfoComponent extends StatelessWidget {
   ///
   final double percent;
 
-  final double _firstColumnWidth = 40;
+  static const _firstColumnWidth = 40.0;
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
@@ -53,7 +53,7 @@ class ValueInfoComponent extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               width: _firstColumnWidth,
             ),
             Column(
