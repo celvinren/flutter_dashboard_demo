@@ -27,17 +27,17 @@ abstract class _DesignTheme {
         titleSmall: TextStyle(
           color: color,
           fontSize: _titleSmallFontSize,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         ),
         bodyLarge: TextStyle(
           color: color,
           fontSize: _bodyLargeFontSize,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         ),
         bodyMedium: TextStyle(
           color: color,
           fontSize: _bodyMediumFontSize,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
           overflow: TextOverflow.clip,
         ),
         bodySmall: TextStyle(
