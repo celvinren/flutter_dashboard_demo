@@ -181,7 +181,16 @@ class DesignTheme extends _DesignTheme {
         ),
         primary: Color(0xFF007AFF),
         onPrimary: Color.fromRGBO(255, 255, 255, 0.9),
-        secondary: Color(0XFFEAEEF6),
+        secondary: MaterialColor(
+          0xFF007AFF,
+          <int, Color>{
+            50: Color(0xFF007AFF),
+            100: Color(0xFF02CACD),
+            200: Color(0xFFFDAD15),
+            300: Color(0xFF2AC670),
+            400: Color(0xFF956AFF),
+          },
+        ),
         onSecondary: Color(0XFFB7BCC5),
         error: Color(0XFFFF6252),
         onError: Color(0XFFFFFFFF),
