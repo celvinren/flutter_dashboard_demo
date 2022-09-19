@@ -22,7 +22,7 @@ abstract class _DesignTheme {
         titleMedium: TextStyle(
           color: color,
           fontSize: _titleMediumFontSize,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         ),
         titleSmall: TextStyle(
           color: color,

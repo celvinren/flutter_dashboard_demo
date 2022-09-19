@@ -8,13 +8,6 @@ void main() async {
   await matchGolden(
     name: 'Title value listTile test',
     pumpBeforeTest: pumpOnce,
-    // whilePerforming: (final tester) async {
-    //   final button = find.byType(LicenseItem).first;
-    //   await tester.tap(button);
-    //   await tester.pumpAndSettle();
-
-    //   return null;
-    // },
     scenarios: [
       Scenario(
         name: 'Title value listTile test',
