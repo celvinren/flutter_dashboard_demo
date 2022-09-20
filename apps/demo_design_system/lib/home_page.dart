@@ -19,6 +19,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
+    final onSurface = theme.colorScheme.onSurface is MaterialColor
+        ? (theme.colorScheme.onSurface as MaterialColor).shade300
+        : theme.colorScheme.onSurface;
     const percent = 100;
     const decimal = 2;
 
@@ -81,44 +85,47 @@ class HomePage extends StatelessWidget {
             ),
             Card(
               margin: const EdgeInsets.symmetric(horizontal: 15),
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ValueInfoComponent(
-                      icon: SvgIcon.asset('assets/user_4_fill.svg'),
-                      title: 'User',
-                      value: '2,765',
-                      isUp: true,
-                      percent: (Random().nextDouble() * percent)
-                          .toStringAsFixed(decimal),
-                    ),
-                    ValueInfoComponent(
-                      icon: SvgIcon.asset('assets/chart_pie_fill.svg'),
-                      title: 'New',
-                      value: '253',
-                      isUp: false,
-                      percent: (Random().nextDouble() * percent)
-                          .toStringAsFixed(decimal),
-                    ),
-                    ValueInfoComponent(
-                      icon: SvgIcon.asset('assets/tag_fill.svg'),
-                      title: 'Average',
-                      value: '896',
-                      isUp: true,
-                      percent: (Random().nextDouble() * percent)
-                          .toStringAsFixed(decimal),
-                    ),
-                    ValueInfoComponent(
-                      icon: SvgIcon.asset('assets/wallet_4_fill.svg'),
-                      title: 'Total',
-                      value: '253',
-                      isUp: false,
-                      percent: (Random().nextDouble() * percent)
-                          .toStringAsFixed(decimal),
-                    ),
-                  ],
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ValueInfoComponent(
+                        icon: SvgIcon.asset('assets/user_4_fill.svg'),
+                        title: 'User',
+                        value: '2,765',
+                        isUp: true,
+                        percent: (Random().nextDouble() * percent)
+                            .toStringAsFixed(decimal),
+                      ),
+                      ValueInfoComponent(
+                        icon: SvgIcon.asset('assets/chart_pie_fill.svg'),
+                        title: 'New',
+                        value: '253',
+                        isUp: false,
+                        percent: (Random().nextDouble() * percent)
+                            .toStringAsFixed(decimal),
+                      ),
+                      ValueInfoComponent(
+                        icon: SvgIcon.asset('assets/tag_fill.svg'),
+                        title: 'Average',
+                        value: '896',
+                        isUp: true,
+                        percent: (Random().nextDouble() * percent)
+                            .toStringAsFixed(decimal),
+                      ),
+                      ValueInfoComponent(
+                        icon: SvgIcon.asset('assets/wallet_4_fill.svg'),
+                        title: 'Total',
+                        value: '253',
+                        isUp: false,
+                        percent: (Random().nextDouble() * percent)
+                            .toStringAsFixed(decimal),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -133,6 +140,80 @@ class HomePage extends StatelessWidget {
                   leadingImage: ImageAssetProvider('assets/user_profile.png'),
                   title: 'Richard',
                   subtitle: '9394lay@gmail.com',
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Card(
+              margin: const EdgeInsets.symmetric(horizontal: 15),
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    SideBarListTile(
+                      leadingWidget: SvgIcon.asset(
+                        'assets/side_bar_icons/home_light.svg',
+                        color: onSurface,
+                      ),
+                      title: 'Dashboard',
+                    ),
+                    SideBarListTile(
+                      leadingWidget: SvgIcon.asset(
+                        'assets/side_bar_icons/clipboard_light.svg',
+                        color: onSurface,
+                      ),
+                      title: 'Orders',
+                    ),
+                    SideBarListTile(
+                      leadingWidget: SvgIcon.asset(
+                        'assets/side_bar_icons/schedule_light.svg',
+                        color: onSurface,
+                      ),
+                      title: 'Schedules',
+                    ),
+                    SideBarListTile(
+                      leadingWidget: SvgIcon.asset(
+                        'assets/side_bar_icons/message_light.svg',
+                        color: onSurface,
+                      ),
+                      title: 'Messages',
+                      value: '15',
+                    ),
+                    SideBarListTile(
+                      leadingWidget: SvgIcon.asset(
+                        'assets/side_bar_icons/inbox_light.svg',
+                        color: onSurface,
+                      ),
+                      title: 'Inbox',
+                    ),
+                    SideBarListTile(
+                      leadingWidget: SvgIcon.asset(
+                        'assets/side_bar_icons/chart_bar_light.svg',
+                        color: onSurface,
+                      ),
+                      title: 'Analytics',
+                    ),
+                    Divider(
+                      thickness: 1,
+                      color: theme.colorScheme.background,
+                    ),
+                    SideBarListTile(
+                      leadingWidget: SvgIcon.asset(
+                        'assets/side_bar_icons/news_light.svg',
+                        color: onSurface,
+                      ),
+                      title: 'News',
+                    ),
+                    SideBarListTile(
+                      leadingWidget: SvgIcon.asset(
+                        'assets/side_bar_icons/settings_light.svg',
+                        color: onSurface,
+                      ),
+                      title: 'Settings',
+                    ),
+                  ],
                 ),
               ),
             ),
