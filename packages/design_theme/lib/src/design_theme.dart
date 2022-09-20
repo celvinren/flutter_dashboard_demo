@@ -112,7 +112,9 @@ abstract class _DesignTheme {
         textTheme: _textTheme(colorScheme.onBackground),
         appBarTheme: AppBarTheme(
           elevation: 0,
-          titleTextStyle: TextStyle(color: colorScheme.onBackground),
+          titleTextStyle: TextStyle(
+            color: (colorScheme.onSurface as MaterialColor).shade50,
+          ),
           iconTheme: IconThemeData(
             color: colorScheme.secondary,
           ),
