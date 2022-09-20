@@ -16,7 +16,7 @@ void main() async {
           title: 'User',
           value: '2,765',
           isUp: true,
-          percent: 1.2,
+          percent: 1.2.toString(),
         ),
       ),
       Scenario(
@@ -26,7 +26,7 @@ void main() async {
           title: 'User',
           value: '2,765',
           isUp: false,
-          percent: 1.2,
+          percent: 1.2.toString(),
         ),
       ),
     ],

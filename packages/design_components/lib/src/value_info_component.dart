@@ -26,7 +26,7 @@ class ValueInfoComponent extends StatelessWidget {
   final bool isUp;
 
   ///
-  final double percent;
+  final String percent;
 
   static const _firstColumnWidth = 40.0;
   @override
