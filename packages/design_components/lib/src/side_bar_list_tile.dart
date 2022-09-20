@@ -27,6 +27,19 @@ class SideBarListTile extends StatelessWidget {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
 
+    final onSurfaceMessageBackgroundColor =
+        theme.colorScheme.onSurface is MaterialColor
+            ? (theme.colorScheme.onSurface as MaterialColor).shade50
+            : theme.colorScheme.onSurface;
+
+    final onSurfaceTitle = theme.colorScheme.onSurface is MaterialColor
+        ? (theme.colorScheme.onSurface as MaterialColor).shade300
+        : theme.colorScheme.onSurface;
+
+    final onSurfaceTrailing = theme.colorScheme.onSurface is MaterialColor
+        ? (theme.colorScheme.onSurface as MaterialColor).shade200
+        : theme.colorScheme.onSurface;
+
     return ListTile(
       leading: SizedBox(
         height: _leadingIconSize,
@@ -37,19 +50,18 @@ class SideBarListTile extends StatelessWidget {
         title,
         style: theme.textTheme.titleMedium?.copyWith(
           height: _lineHeight,
-          color: (theme.colorScheme.onSurface as MaterialColor).shade300,
+          color: onSurfaceTitle,
         ),
       ),
       trailing: value != null
           ? CircleAvatar(
-              backgroundColor: (theme.colorScheme.onSurface as MaterialColor)
-                  .withOpacity(_valueOpacity),
+              backgroundColor:
+                  onSurfaceMessageBackgroundColor.withOpacity(_valueOpacity),
               radius: _valueRadius,
               child: Text(
                 value ?? '',
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color:
-                      (theme.colorScheme.onSurface as MaterialColor).shade200,
+                  color: onSurfaceTrailing,
                 ),
               ),
             )

@@ -15,28 +15,31 @@ class TitleValueListTile extends StatelessWidget {
   ///
   final String value;
 
-  static const _lineHeight = 1.5;
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
+
+    final onSurface = theme.colorScheme.onSurface is MaterialColor
+        ? (theme.colorScheme.onSurface as MaterialColor).shade100
+        : theme.colorScheme.onSurface;
 
     return ListTile(
       title: Text(
         title,
         style: theme.textTheme.bodySmall?.copyWith(
-          height: _lineHeight,
-          color: (theme.colorScheme.onSurface as MaterialColor).shade100,
+          color: onSurface,
         ),
       ),
       trailing: Text(
         value,
         style: theme.textTheme.bodySmall?.copyWith(
-          height: _lineHeight,
           color: theme.colorScheme.onSurface,
           fontWeight: FontWeight.w700,
         ),
       ),
       contentPadding: EdgeInsets.zero,
+      dense: true,
+      visualDensity: const VisualDensity(vertical: -3),
     );
   }
 }

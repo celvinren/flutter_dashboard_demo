@@ -15,10 +15,14 @@ class CardTitle extends StatelessWidget {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
 
+    final onSurface = theme.colorScheme.onSurface is MaterialColor
+        ? (theme.colorScheme.onSurface as MaterialColor).shade50
+        : theme.colorScheme.onSurface;
+
     return Text(
       title,
       style: theme.textTheme.titleLarge?.copyWith(
-        color: (theme.colorScheme.onSurface as MaterialColor).shade50,
+        color: onSurface,
       ),
     );
   }

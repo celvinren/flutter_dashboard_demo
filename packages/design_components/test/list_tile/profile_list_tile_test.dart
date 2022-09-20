@@ -15,8 +15,8 @@ void main() async {
         widget: Container(
           color: Colors.white,
           width: 320,
-          child: ProfileListTile(
-            leadingWidget: ImageAssetIcon.asset('assets/user_profile.png'),
+          child: const ProfileListTile(
+            leadingImage: ImageAssetProvider('assets/user_profile.png'),
             title: 'Richard',
             subtitle: '9394lay@gmail.com',
           ),
@@ -27,8 +27,8 @@ void main() async {
         widget: Container(
           color: const Color(0xff1B2130),
           width: 320,
-          child: ProfileListTile(
-            leadingWidget: ImageAssetIcon.asset('assets/user_profile.png'),
+          child: const ProfileListTile(
+            leadingImage: ImageAssetProvider('assets/user_profile.png'),
             title: 'Richard',
             subtitle: '9394lay@gmail.com',
           ),

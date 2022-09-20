@@ -33,6 +33,14 @@ class ValueInfoComponent extends StatelessWidget {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
 
+    final onSurface = theme.colorScheme.onSurface is MaterialColor
+        ? (theme.colorScheme.onSurface as MaterialColor).shade200
+        : theme.colorScheme.onSurface;
+
+    final secondary = theme.colorScheme.secondary is MaterialColor
+        ? (theme.colorScheme.secondary as MaterialColor).shade300
+        : theme.colorScheme.secondary;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -45,7 +53,7 @@ class ValueInfoComponent extends StatelessWidget {
             Text(
               title,
               style: theme.textTheme.bodySmall?.copyWith(
-                color: (theme.colorScheme.onSurface as MaterialColor).shade200,
+                color: onSurface,
               ),
             ),
           ],
@@ -71,10 +79,7 @@ class ValueInfoComponent extends StatelessWidget {
                     Text(
                       '$percent%',
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: isUp
-                            ? (theme.colorScheme.secondary as MaterialColor)
-                                .shade300
-                            : theme.colorScheme.error,
+                        color: isUp ? secondary : theme.colorScheme.error,
                       ),
                     ),
                   ],
