@@ -42,6 +42,7 @@ class ValueInfoComponent extends StatelessWidget {
         : theme.colorScheme.secondary;
 
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(

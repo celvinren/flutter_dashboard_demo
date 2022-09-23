@@ -169,7 +169,7 @@ class DesignTheme extends _DesignTheme {
   @override
   ColorScheme get _darkColorScheme => const ColorScheme(
         brightness: Brightness.dark,
-        background: Color(0xFF1B2130),
+        background: Color(0xFF131722),
         onBackground: Color(0XFF060F1D),
         surface: Color(0XFF1B2130),
         onSurface: MaterialColor(

@@ -9,11 +9,18 @@ environment:
   sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
+  app_blocs:
+    path: ../../packages/app_blocs
+  design_components:
+    path: ../../packages/design_components
+  design_icons:
+    path: ../../packages/design_icons
   design_theme:
     path: ../../packages/design_theme
   firebase_core: ^1.22.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.1
   flutter_localizations:
     sdk: flutter
 
