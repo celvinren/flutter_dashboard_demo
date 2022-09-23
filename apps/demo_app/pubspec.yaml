@@ -18,6 +18,7 @@ dependencies:
   design_theme:
     path: ../../packages/design_theme
   firebase_core: ^1.22.0
+  fl_chart: ^0.55.1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1

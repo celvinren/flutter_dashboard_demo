@@ -6,6 +6,10 @@ import 'package:design_icons/design_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bar_chart/bar_chart_card.dart';
+import '../line_chart/line_chart_card.dart';
+import '../pie_chart/pie_chart_card.dart';
+
 ///
 class HomePageDesktop extends StatelessWidget {
   ///
@@ -136,7 +140,7 @@ class HomePageDesktop extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AspectRatio(
-                        aspectRatio: 28 / 3,
+                        aspectRatio: 28 / 4,
                         child: Card(
                           child: Padding(
                             padding: const EdgeInsets.all(8),
@@ -185,65 +189,71 @@ class HomePageDesktop extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          const Expanded(
-                            flex: 2,
-                            child: Card(
-                              child: Padding(
-                                padding: EdgeInsets.all(30),
-                                child: SizedBox(
-                                  height: 265,
+                          Expanded(
+                            flex: 2, //constraints.maxWidth > 1500 ? 3 : 2,
+                            child: LayoutBuilder(
+                              builder: (final context, final constraints) =>
+                                  SizedBox(
+                                height: constraints.maxWidth / 2,
+                                child: const Card(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(30),
+                                    child: BarChartSample2(),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: 350,
-                            child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(30),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: const [
-                                        CardTitle(title: 'Details'),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    const TitleValueListTile(
-                                      title: 'Previous Close',
-                                      value: '4,324.32',
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    const TitleValueListTile(
-                                      title: 'Year Range',
-                                      value: '4,834.32 - 4,932.53',
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    const TitleValueListTile(
-                                      title: 'Day Range',
-                                      value: '2,623.28 - 3,823.74',
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    const TitleValueListTile(
-                                      title: 'Market Cap',
-                                      value: r'$23.7 T USD',
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    const TitleValueListTile(
-                                      title: 'P/E Ratio',
-                                      value: '82.73',
-                                    ),
-                                  ],
+                          Expanded(
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: Card(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(30),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: const [
+                                          CardTitle(title: 'Details'),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      const TitleValueListTile(
+                                        title: 'Previous Close',
+                                        value: '4,324.32',
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      const TitleValueListTile(
+                                        title: 'Year Range',
+                                        value: '4,834.32 - 4,932.53',
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      const TitleValueListTile(
+                                        title: 'Day Range',
+                                        value: '2,623.28 - 3,823.74',
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      const TitleValueListTile(
+                                        title: 'Market Cap',
+                                        value: r'$23.7 T USD',
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      const TitleValueListTile(
+                                        title: 'P/E Ratio',
+                                        value: '82.73',
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -251,67 +261,28 @@ class HomePageDesktop extends StatelessWidget {
                         ],
                       ),
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Expanded(
+                          Expanded(
                             flex: 2,
-                            child: Card(
-                              child: Padding(
-                                padding: EdgeInsets.all(30),
-                                child: SizedBox(
-                                  height: 265,
+                            child: LayoutBuilder(
+                              builder: (final context, final constraints) =>
+                                  SizedBox(
+                                height: constraints.maxWidth / 2,
+                                child: const Card(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(30),
+                                    child: LineChartSample1(),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: 350,
+                          const Expanded(
                             child: Card(
                               child: Padding(
-                                padding: const EdgeInsets.all(30),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: const [
-                                        CardTitle(title: 'Details'),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    const TitleValueListTile(
-                                      title: 'Previous Close',
-                                      value: '4,324.32',
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    const TitleValueListTile(
-                                      title: 'Year Range',
-                                      value: '4,834.32 - 4,932.53',
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    const TitleValueListTile(
-                                      title: 'Day Range',
-                                      value: '2,623.28 - 3,823.74',
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    const TitleValueListTile(
-                                      title: 'Market Cap',
-                                      value: r'$23.7 T USD',
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    const TitleValueListTile(
-                                      title: 'P/E Ratio',
-                                      value: '82.73',
-                                    ),
-                                  ],
-                                ),
+                                padding: EdgeInsets.all(30),
+                                child: PieChartSample2(),
                               ),
                             ),
                           ),
