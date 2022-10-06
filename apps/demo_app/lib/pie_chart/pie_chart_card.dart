@@ -14,84 +14,31 @@ class PieChart2State extends State {
   @override
   Widget build(final BuildContext context) => AspectRatio(
         aspectRatio: 1,
-        child: Row(
-          children: <Widget>[
-            const SizedBox(
-              height: 18,
-            ),
-            Expanded(
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: LayoutBuilder(
-                  builder: (final context, final constraints) => PieChart(
-                    PieChartData(
-                      pieTouchData: PieTouchData(
-                        touchCallback: (final event, final pieTouchResponse) {
-                          setState(() {
-                            if (!event.isInterestedForInteractions ||
-                                pieTouchResponse == null ||
-                                pieTouchResponse.touchedSection == null) {
-                              touchedIndex = -1;
-                              return;
-                            }
-                            touchedIndex = pieTouchResponse
-                                .touchedSection!.touchedSectionIndex;
-                          });
-                        },
-                      ),
-                      borderData: FlBorderData(
-                        show: false,
-                      ),
-                      sectionsSpace: 0,
-                      centerSpaceRadius: 100,
-                      sections: showingSections(),
-                    ),
-                  ),
-                ),
+        child: LayoutBuilder(
+          builder: (final context, final constraints) => PieChart(
+            PieChartData(
+              pieTouchData: PieTouchData(
+                touchCallback: (final event, final pieTouchResponse) {
+                  setState(() {
+                    if (!event.isInterestedForInteractions ||
+                        pieTouchResponse == null ||
+                        pieTouchResponse.touchedSection == null) {
+                      touchedIndex = -1;
+                      return;
+                    }
+                    touchedIndex =
+                        pieTouchResponse.touchedSection!.touchedSectionIndex;
+                  });
+                },
               ),
+              borderData: FlBorderData(
+                show: false,
+              ),
+              sectionsSpace: 0,
+              centerSpaceRadius: (constraints.maxWidth - 60) / 2,
+              sections: showingSections(),
             ),
-            // Column(
-            //   mainAxisAlignment: MainAxisAlignment.end,
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   children: const <Widget>[
-            //     Indicator(
-            //       color: Color(0xff0293ee),
-            //       text: 'First',
-            //       isSquare: true,
-            //     ),
-            //     SizedBox(
-            //       height: 4,
-            //     ),
-            //     Indicator(
-            //       color: Color(0xfff8b250),
-            //       text: 'Second',
-            //       isSquare: true,
-            //     ),
-            //     SizedBox(
-            //       height: 4,
-            //     ),
-            //     Indicator(
-            //       color: Color(0xff845bef),
-            //       text: 'Third',
-            //       isSquare: true,
-            //     ),
-            //     SizedBox(
-            //       height: 4,
-            //     ),
-            //     Indicator(
-            //       color: Color(0xff13d38e),
-            //       text: 'Fourth',
-            //       isSquare: true,
-            //     ),
-            //     SizedBox(
-            //       height: 18,
-            //     ),
-            //   ],
-            // ),
-            // const SizedBox(
-            //   width: 28,
-            // ),
-          ],
+          ),
         ),
       );
 

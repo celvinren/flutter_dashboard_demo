@@ -24,9 +24,123 @@ class HomePageDesktop extends StatelessWidget {
     const percent = 100;
     const decimal = 2;
 
+    final topCard = Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            ValueInfoComponent(
+              icon: SvgIcon.asset('assets/user_4_fill.svg'),
+              title: 'User',
+              value: '2,765',
+              isUp: true,
+              percent:
+                  (Random().nextDouble() * percent).toStringAsFixed(decimal),
+            ),
+            ValueInfoComponent(
+              icon: SvgIcon.asset(
+                'assets/chart_pie_fill.svg',
+              ),
+              title: 'New',
+              value: '253',
+              isUp: false,
+              percent:
+                  (Random().nextDouble() * percent).toStringAsFixed(decimal),
+            ),
+            ValueInfoComponent(
+              icon: SvgIcon.asset('assets/tag_fill.svg'),
+              title: 'Average',
+              value: '896',
+              isUp: true,
+              percent:
+                  (Random().nextDouble() * percent).toStringAsFixed(decimal),
+            ),
+            ValueInfoComponent(
+              icon: SvgIcon.asset('assets/wallet_4_fill.svg'),
+              title: 'Total',
+              value: '253',
+              isUp: false,
+              percent:
+                  (Random().nextDouble() * percent).toStringAsFixed(decimal),
+            ),
+          ],
+        ),
+      ),
+    );
+    const barChart = Card(
+      child: Padding(
+        padding: EdgeInsets.all(30),
+        child: BarChartSample2(),
+      ),
+    );
+
+    final listView = Card(
+      child: Padding(
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          children: [
+            Row(
+              children: const [
+                CardTitle(title: 'Details'),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const TitleValueListTile(
+              title: 'Previous Close',
+              value: '4,324.32',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const TitleValueListTile(
+              title: 'Year Range',
+              value: '4,834.32 - 4,932.53',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const TitleValueListTile(
+              title: 'Day Range',
+              value: '2,623.28 - 3,823.74',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const TitleValueListTile(
+              title: 'Market Cap',
+              value: r'$23.7 T USD',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const TitleValueListTile(
+              title: 'P/E Ratio',
+              value: '82.73',
+            ),
+          ],
+        ),
+      ),
+    );
+
+    const lineChart = Card(
+      child: Padding(
+        padding: EdgeInsets.all(30),
+        child: LineChartSample1(),
+      ),
+    );
+    const pieChart = Card(
+      child: Padding(
+        padding: EdgeInsets.all(30),
+        child: PieChartSample2(),
+      ),
+    );
+
     return Scaffold(
       body: LayoutBuilder(
-        builder: (final context, final constraints) => SingleChildScrollView(
+        builder: (final context, final constraintMain) => SingleChildScrollView(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -139,154 +253,122 @@ class HomePageDesktop extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AspectRatio(
-                        aspectRatio: 28 / 4,
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                ValueInfoComponent(
-                                  icon: SvgIcon.asset('assets/user_4_fill.svg'),
-                                  title: 'User',
-                                  value: '2,765',
-                                  isUp: true,
-                                  percent: (Random().nextDouble() * percent)
-                                      .toStringAsFixed(decimal),
-                                ),
-                                ValueInfoComponent(
-                                  icon: SvgIcon.asset(
-                                    'assets/chart_pie_fill.svg',
+                      if (constraintMain.maxWidth < 1100)
+                        SizedBox(
+                          height: 111,
+                          child: topCard,
+                        )
+                      else if (constraintMain.maxWidth < 1600)
+                        AspectRatio(
+                          aspectRatio: 28 / 4,
+                          child: topCard,
+                        )
+                      else
+                        SizedBox(
+                          height: 167,
+                          child: topCard,
+                        ),
+                      LayoutBuilder(
+                        builder: (final context, final constraintSecondRow) =>
+                            Row(
+                          children: [
+                            if (constraintMain.maxWidth < 1325)
+                              SizedBox(
+                                height: 333,
+                                width: constraintSecondRow.maxWidth - 333,
+                                child: barChart,
+                              )
+                            else if (constraintMain.maxWidth <= 1700)
+                              Expanded(
+                                flex: 2, //constraints.maxWidth > 1700 ? 3 : 2,
+                                child: LayoutBuilder(
+                                  builder: (final context, final constraints) =>
+                                      SizedBox(
+                                    height: constraints.maxWidth / 2,
+                                    child: barChart,
                                   ),
-                                  title: 'New',
-                                  value: '253',
-                                  isUp: false,
-                                  percent: (Random().nextDouble() * percent)
-                                      .toStringAsFixed(decimal),
                                 ),
-                                ValueInfoComponent(
-                                  icon: SvgIcon.asset('assets/tag_fill.svg'),
-                                  title: 'Average',
-                                  value: '896',
-                                  isUp: true,
-                                  percent: (Random().nextDouble() * percent)
-                                      .toStringAsFixed(decimal),
+                              )
+                            else
+                              SizedBox(
+                                height: 450,
+                                width: constraintSecondRow.maxWidth - 450,
+                                child: barChart,
+                              ),
+                            if (constraintMain.maxWidth < 1325)
+                              SizedBox(
+                                height: 333,
+                                width: 333,
+                                child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: listView,
                                 ),
-                                ValueInfoComponent(
-                                  icon:
-                                      SvgIcon.asset('assets/wallet_4_fill.svg'),
-                                  title: 'Total',
-                                  value: '253',
-                                  isUp: false,
-                                  percent: (Random().nextDouble() * percent)
-                                      .toStringAsFixed(decimal),
+                              )
+                            else if (constraintMain.maxWidth <= 1700)
+                              Expanded(
+                                child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: listView,
                                 ),
-                              ],
-                            ),
-                          ),
+                              )
+                            else
+                              SizedBox(
+                                height: 450,
+                                width: 450,
+                                child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: listView,
+                                ),
+                              ),
+                          ],
                         ),
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 2, //constraints.maxWidth > 1500 ? 3 : 2,
-                            child: LayoutBuilder(
-                              builder: (final context, final constraints) =>
-                                  SizedBox(
-                                height: constraints.maxWidth / 2,
-                                child: const Card(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(30),
-                                    child: BarChartSample2(),
+                      LayoutBuilder(
+                        builder: (final context, final constraintThirdRow) =>
+                            Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (constraintMain.maxWidth < 1325)
+                              SizedBox(
+                                height: 333,
+                                width: constraintThirdRow.maxWidth - 333,
+                                child: lineChart,
+                              )
+                            else if (constraintMain.maxWidth <= 1700)
+                              Expanded(
+                                flex: 2,
+                                child: LayoutBuilder(
+                                  builder: (final context, final constraints) =>
+                                      SizedBox(
+                                    height: constraints.maxWidth / 2,
+                                    child: lineChart,
                                   ),
                                 ),
+                              )
+                            else
+                              SizedBox(
+                                height: 450,
+                                width: constraintThirdRow.maxWidth - 450,
+                                child: lineChart,
                               ),
-                            ),
-                          ),
-                          Expanded(
-                            child: AspectRatio(
-                              aspectRatio: 1,
-                              child: Card(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(30),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: const [
-                                          CardTitle(title: 'Details'),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      const TitleValueListTile(
-                                        title: 'Previous Close',
-                                        value: '4,324.32',
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      const TitleValueListTile(
-                                        title: 'Year Range',
-                                        value: '4,834.32 - 4,932.53',
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      const TitleValueListTile(
-                                        title: 'Day Range',
-                                        value: '2,623.28 - 3,823.74',
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      const TitleValueListTile(
-                                        title: 'Market Cap',
-                                        value: r'$23.7 T USD',
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      const TitleValueListTile(
-                                        title: 'P/E Ratio',
-                                        value: '82.73',
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                            if (constraintMain.maxWidth < 1325)
+                              const SizedBox(
+                                height: 333,
+                                width: 333,
+                                child: pieChart,
+                              )
+                            else if (constraintMain.maxWidth <= 1700)
+                              const Expanded(
+                                child: pieChart,
+                              )
+                            else if (constraintMain.maxWidth > 1700)
+                              const SizedBox(
+                                height: 450,
+                                width: 450,
+                                child: pieChart,
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: LayoutBuilder(
-                              builder: (final context, final constraints) =>
-                                  SizedBox(
-                                height: constraints.maxWidth / 2,
-                                child: const Card(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(30),
-                                    child: LineChartSample1(),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Expanded(
-                            child: Card(
-                              child: Padding(
-                                padding: EdgeInsets.all(30),
-                                child: PieChartSample2(),
-                              ),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),

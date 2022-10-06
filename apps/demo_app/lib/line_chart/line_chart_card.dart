@@ -2,13 +2,11 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class _LineChart extends StatelessWidget {
-  const _LineChart({required this.isShowingMainData});
-
-  final bool isShowingMainData;
+  const _LineChart();
 
   @override
   Widget build(final BuildContext context) => LineChart(
-        isShowingMainData ? sampleData1 : sampleData2,
+        sampleData1,
         swapAnimationDuration: const Duration(milliseconds: 250),
       );
 
@@ -21,18 +19,6 @@ class _LineChart extends StatelessWidget {
         minX: 0,
         maxX: 14,
         maxY: 4,
-        minY: 0,
-      );
-
-  LineChartData get sampleData2 => LineChartData(
-        lineTouchData: lineTouchData2,
-        gridData: gridData,
-        titlesData: titlesData2,
-        borderData: borderData,
-        lineBarsData: lineBarsData2,
-        minX: 0,
-        maxX: 14,
-        maxY: 6,
         minY: 0,
       );
 
@@ -62,31 +48,6 @@ class _LineChart extends StatelessWidget {
         lineChartBarData1_1,
         lineChartBarData1_2,
         lineChartBarData1_3,
-      ];
-
-  LineTouchData get lineTouchData2 => LineTouchData(
-        enabled: false,
-      );
-
-  FlTitlesData get titlesData2 => FlTitlesData(
-        bottomTitles: AxisTitles(
-          sideTitles: bottomTitles,
-        ),
-        rightTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        topTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        leftTitles: AxisTitles(
-          sideTitles: leftTitles(),
-        ),
-      );
-
-  List<LineChartBarData> get lineBarsData2 => [
-        lineChartBarData2_1,
-        lineChartBarData2_2,
-        lineChartBarData2_3,
       ];
 
   Widget leftTitleWidgets(final double value, final TitleMeta meta) {
@@ -227,81 +188,11 @@ class _LineChart extends StatelessWidget {
           FlSpot(13, 2.5),
         ],
       );
-
-  LineChartBarData get lineChartBarData2_1 => LineChartBarData(
-        isCurved: true,
-        curveSmoothness: 0,
-        color: const Color(0x444af699),
-        barWidth: 4,
-        isStrokeCapRound: true,
-        dotData: FlDotData(show: false),
-        belowBarData: BarAreaData(show: false),
-        spots: const [
-          FlSpot(1, 1),
-          FlSpot(3, 4),
-          FlSpot(5, 1.8),
-          FlSpot(7, 5),
-          FlSpot(10, 2),
-          FlSpot(12, 2.2),
-          FlSpot(13, 1.8),
-        ],
-      );
-
-  LineChartBarData get lineChartBarData2_2 => LineChartBarData(
-        isCurved: true,
-        color: const Color(0x99aa4cfc),
-        barWidth: 4,
-        isStrokeCapRound: true,
-        dotData: FlDotData(show: false),
-        belowBarData: BarAreaData(
-          show: true,
-          color: const Color(0x33aa4cfc),
-        ),
-        spots: const [
-          FlSpot(1, 1),
-          FlSpot(3, 2.8),
-          FlSpot(7, 1.2),
-          FlSpot(10, 2.8),
-          FlSpot(12, 2.6),
-          FlSpot(13, 3.9),
-        ],
-      );
-
-  LineChartBarData get lineChartBarData2_3 => LineChartBarData(
-        isCurved: true,
-        curveSmoothness: 0,
-        color: const Color(0x4427b6fc),
-        barWidth: 2,
-        isStrokeCapRound: true,
-        dotData: FlDotData(show: true),
-        belowBarData: BarAreaData(show: false),
-        spots: const [
-          FlSpot(1, 3.8),
-          FlSpot(3, 1.9),
-          FlSpot(6, 5),
-          FlSpot(10, 3.3),
-          FlSpot(13, 4.5),
-        ],
-      );
 }
 
-class LineChartSample1 extends StatefulWidget {
+class LineChartSample1 extends StatelessWidget {
   const LineChartSample1({super.key});
 
   @override
-  State<StatefulWidget> createState() => LineChartSample1State();
-}
-
-class LineChartSample1State extends State<LineChartSample1> {
-  late bool isShowingMainData;
-
-  @override
-  void initState() {
-    super.initState();
-    isShowingMainData = true;
-  }
-
-  @override
-  Widget build(final BuildContext context) =>
-      _LineChart(isShowingMainData: isShowingMainData);
+  Widget build(final BuildContext context) => const _LineChart();
 }

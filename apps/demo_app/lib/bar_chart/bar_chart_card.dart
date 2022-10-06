@@ -45,122 +45,85 @@ class BarChartSample2State extends State<BarChartSample2> {
   }
 
   @override
-  Widget build(final BuildContext context) => AspectRatio(
-        aspectRatio: 1,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  makeTransactionsIcon(),
-                  const SizedBox(
-                    width: 38,
-                  ),
-                  const Text(
-                    'Transactions',
-                    style: TextStyle(color: Colors.white, fontSize: 22),
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  const Text(
-                    'state',
-                    style: TextStyle(color: Color(0xff77839a), fontSize: 16),
-                  ),
-                ],
+  Widget build(final BuildContext context) => Padding(
+        padding: const EdgeInsets.all(16),
+        child: Expanded(
+          child: BarChart(
+            BarChartData(
+              maxY: 20,
+              barTouchData: BarTouchData(
+                touchTooltipData: BarTouchTooltipData(
+                  tooltipBgColor: Colors.grey,
+                  getTooltipItem: (final a, final b, final c, final d) => null,
+                ),
+                touchCallback: (final event, final response) {
+                  if (response == null || response.spot == null) {
+                    setState(() {
+                      touchedGroupIndex = -1;
+                      showingBarGroups = List.of(rawBarGroups);
+                    });
+                    return;
+                  }
+
+                  touchedGroupIndex = response.spot!.touchedBarGroupIndex;
+
+                  setState(() {
+                    if (!event.isInterestedForInteractions) {
+                      touchedGroupIndex = -1;
+                      showingBarGroups = List.of(rawBarGroups);
+                      return;
+                    }
+                    showingBarGroups = List.of(rawBarGroups);
+                    if (touchedGroupIndex != -1) {
+                      var sum = 0.0;
+                      for (final rod
+                          in showingBarGroups[touchedGroupIndex].barRods) {
+                        sum += rod.toY;
+                      }
+                      final avg = sum /
+                          showingBarGroups[touchedGroupIndex].barRods.length;
+
+                      showingBarGroups[touchedGroupIndex] =
+                          showingBarGroups[touchedGroupIndex].copyWith(
+                        barRods: showingBarGroups[touchedGroupIndex]
+                            .barRods
+                            .map((final rod) => rod.copyWith(toY: avg))
+                            .toList(),
+                      );
+                    }
+                  });
+                },
               ),
-              const SizedBox(
-                height: 38,
-              ),
-              Expanded(
-                child: BarChart(
-                  BarChartData(
-                    maxY: 20,
-                    barTouchData: BarTouchData(
-                      touchTooltipData: BarTouchTooltipData(
-                        tooltipBgColor: Colors.grey,
-                        getTooltipItem: (a, final b, final c, final d) => null,
-                      ),
-                      touchCallback: (final event, final response) {
-                        if (response == null || response.spot == null) {
-                          setState(() {
-                            touchedGroupIndex = -1;
-                            showingBarGroups = List.of(rawBarGroups);
-                          });
-                          return;
-                        }
-
-                        touchedGroupIndex = response.spot!.touchedBarGroupIndex;
-
-                        setState(() {
-                          if (!event.isInterestedForInteractions) {
-                            touchedGroupIndex = -1;
-                            showingBarGroups = List.of(rawBarGroups);
-                            return;
-                          }
-                          showingBarGroups = List.of(rawBarGroups);
-                          if (touchedGroupIndex != -1) {
-                            var sum = 0.0;
-                            for (final rod
-                                in showingBarGroups[touchedGroupIndex]
-                                    .barRods) {
-                              sum += rod.toY;
-                            }
-                            final avg = sum /
-                                showingBarGroups[touchedGroupIndex]
-                                    .barRods
-                                    .length;
-
-                            showingBarGroups[touchedGroupIndex] =
-                                showingBarGroups[touchedGroupIndex].copyWith(
-                              barRods: showingBarGroups[touchedGroupIndex]
-                                  .barRods
-                                  .map((final rod) => rod.copyWith(toY: avg))
-                                  .toList(),
-                            );
-                          }
-                        });
-                      },
-                    ),
-                    titlesData: FlTitlesData(
-                      show: true,
-                      rightTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
-                      ),
-                      topTitles: AxisTitles(
-                        sideTitles: SideTitles(showTitles: false),
-                      ),
-                      bottomTitles: AxisTitles(
-                        sideTitles: SideTitles(
-                          showTitles: true,
-                          getTitlesWidget: bottomTitles,
-                          reservedSize: 42,
-                        ),
-                      ),
-                      leftTitles: AxisTitles(
-                        sideTitles: SideTitles(
-                          showTitles: true,
-                          reservedSize: 28,
-                          interval: 1,
-                          getTitlesWidget: leftTitles,
-                        ),
-                      ),
-                    ),
-                    borderData: FlBorderData(
-                      show: false,
-                    ),
-                    barGroups: showingBarGroups,
-                    gridData: FlGridData(show: false),
+              titlesData: FlTitlesData(
+                show: true,
+                rightTitles: AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+                topTitles: AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+                bottomTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    getTitlesWidget: bottomTitles,
+                    reservedSize: 42,
+                  ),
+                ),
+                leftTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    reservedSize: 28,
+                    interval: 1,
+                    getTitlesWidget: leftTitles,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 12,
+              borderData: FlBorderData(
+                show: false,
               ),
-            ],
+              barGroups: showingBarGroups,
+              gridData: FlGridData(show: false),
+            ),
           ),
         ),
       );
