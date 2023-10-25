@@ -157,10 +157,17 @@ class _ChartsLarge extends StatelessWidget {
                       _topCardHeight -
                       bodyPaddingVertical * 2) /
                   2,
-              child: const Row(
+              child: Row(
                 children: [
-                  Expanded(flex: 2, child: BarChartCard()),
-                  SizedBox(width: 333, child: DataListCard()),
+                  const Expanded(flex: 2, child: BarChartCard()),
+                  SizedBox(
+                    width: 333,
+                    height: (MediaQuery.sizeOf(context).height -
+                            _topCardHeight -
+                            bodyPaddingVertical * 2) /
+                        2,
+                    child: const DataListCard(),
+                  ),
                 ],
               ),
             ),

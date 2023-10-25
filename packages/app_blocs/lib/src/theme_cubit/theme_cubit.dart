@@ -1,10 +1,19 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 ///
 class ThemeCubit extends Cubit<ThemeState> {
   ///
-  ThemeCubit() : super(const ThemeState(isDarkMode: true));
+  ThemeCubit()
+      : super(
+          ThemeState(
+            isDarkMode: SchedulerBinding
+                    .instance.platformDispatcher.platformBrightness ==
+                Brightness.dark,
+          ),
+        );
 
   ///
   void onChangeTheme() {
