@@ -6,9 +6,10 @@ import 'package:design_icons/design_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bar_chart/bar_chart_card.dart';
-import '../line_chart/line_chart_card.dart';
-import '../pie_chart/pie_chart_card.dart';
+import 'widgets/bar_chart_card.dart';
+import 'widgets/left_menu.dart';
+import 'widgets/line_chart_card.dart';
+import 'widgets/pie_chart_card.dart';
 
 enum _HomePageDesktopLayout {
   large,
@@ -27,8 +28,8 @@ enum _HomePageDesktopLayout {
 }
 
 const _topCardHeight = 88.0;
-const _bodyPaddingVertical = 30.0;
-const _bodyPaddingHorizontal = 24.0;
+const bodyPaddingVertical = 30.0;
+const bodyPaddingHorizontal = 24.0;
 
 ///
 class HomePageDesktop extends StatelessWidget {
@@ -41,7 +42,7 @@ class HomePageDesktop extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _LeftMenu(),
+            LeftMenu(),
             _Body(),
           ],
         ),
@@ -56,8 +57,8 @@ class _Body extends StatelessWidget {
   Widget build(final BuildContext context) => const Expanded(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
-            vertical: _bodyPaddingVertical,
-            horizontal: _bodyPaddingHorizontal,
+            vertical: bodyPaddingVertical,
+            horizontal: bodyPaddingHorizontal,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -150,11 +151,11 @@ class _ChartsLarge extends StatelessWidget {
               width: constraint.maxWidth,
               height: (MediaQuery.sizeOf(context).height -
                       _topCardHeight -
-                      _bodyPaddingVertical * 2) /
+                      bodyPaddingVertical * 2) /
                   2,
               child: const Row(
                 children: [
-                  Expanded(flex: 2, child: _BarChartCard()),
+                  Expanded(flex: 2, child: BarChartCard()),
                   SizedBox(width: 333, child: _DataListCard()),
                 ],
               ),
@@ -163,18 +164,18 @@ class _ChartsLarge extends StatelessWidget {
               width: constraint.maxWidth,
               height: (MediaQuery.sizeOf(context).height -
                       _topCardHeight -
-                      _bodyPaddingVertical * 2) /
+                      bodyPaddingVertical * 2) /
                   2,
               child: Row(
                 children: [
                   const Expanded(
                     flex: 2,
-                    child: _LineChartCard(),
+                    child: LineChartCard(),
                   ),
                   SizedBox(
                     width: 333,
                     height: constraint.maxHeight,
-                    child: const _PieChartCard(),
+                    child: const PieChartCard(),
                   ),
                 ],
               ),
@@ -197,54 +198,18 @@ class _ChartsSmall extends StatelessWidget {
             ),
             const SizedBox(
               height: 300,
-              child: _BarChartCard(),
+              child: BarChartCard(),
             ),
             const SizedBox(
               height: 300,
-              child: _LineChartCard(),
+              child: LineChartCard(),
             ),
             SizedBox(
               width: constraint.maxWidth,
               height: 400,
-              child: const _PieChartCard(),
+              child: const PieChartCard(),
             ),
           ],
-        ),
-      );
-}
-
-class _BarChartCard extends StatelessWidget {
-  const _BarChartCard();
-
-  @override
-  Widget build(final BuildContext context) => const Card(
-        child: Padding(
-          padding: EdgeInsets.all(_bodyPaddingVertical),
-          child: BarChartSample2(),
-        ),
-      );
-}
-
-class _PieChartCard extends StatelessWidget {
-  const _PieChartCard();
-
-  @override
-  Widget build(final BuildContext context) => const Card(
-        child: Padding(
-          padding: EdgeInsets.all(_bodyPaddingVertical),
-          child: PieChartSample2(),
-        ),
-      );
-}
-
-class _LineChartCard extends StatelessWidget {
-  const _LineChartCard();
-
-  @override
-  Widget build(final BuildContext context) => const Card(
-        child: Padding(
-          padding: EdgeInsets.all(_bodyPaddingVertical),
-          child: LineChartSample1(),
         ),
       );
 }
@@ -255,7 +220,7 @@ class _DataListCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => const Card(
         child: Padding(
-          padding: EdgeInsets.all(_bodyPaddingVertical),
+          padding: EdgeInsets.all(bodyPaddingVertical),
           child: Column(
             children: [
               Row(
@@ -302,120 +267,6 @@ class _DataListCard extends StatelessWidget {
           ),
         ),
       );
-}
-
-class _LeftMenu extends StatelessWidget {
-  const _LeftMenu();
-
-  static const _menuWidth = 280.0;
-
-  @override
-  Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
-    final onSurface = theme.colorScheme.onSurface is MaterialColor
-        ? (theme.colorScheme.onSurface as MaterialColor).shade300
-        : theme.colorScheme.onSurface;
-    return Container(
-      width: _menuWidth,
-      height: MediaQuery.of(context).size.height,
-      color: theme.colorScheme.surface,
-      child: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      SideBarListTile(
-                        leadingWidget: SvgIcon.asset(
-                          'assets/side_bar_icons/home_light.svg',
-                          color: onSurface,
-                        ),
-                        title: 'Dashboard',
-                      ),
-                      SideBarListTile(
-                        leadingWidget: SvgIcon.asset(
-                          'assets/side_bar_icons/clipboard_light.svg',
-                          color: onSurface,
-                        ),
-                        title: 'Orders',
-                      ),
-                      SideBarListTile(
-                        leadingWidget: SvgIcon.asset(
-                          'assets/side_bar_icons/schedule_light.svg',
-                          color: onSurface,
-                        ),
-                        title: 'Schedules',
-                      ),
-                      SideBarListTile(
-                        leadingWidget: SvgIcon.asset(
-                          'assets/side_bar_icons/message_light.svg',
-                          color: onSurface,
-                        ),
-                        title: 'Messages',
-                        value: '15',
-                      ),
-                      SideBarListTile(
-                        leadingWidget: SvgIcon.asset(
-                          'assets/side_bar_icons/inbox_light.svg',
-                          color: onSurface,
-                        ),
-                        title: 'Inbox',
-                      ),
-                      SideBarListTile(
-                        leadingWidget: SvgIcon.asset(
-                          'assets/side_bar_icons/chart_bar_light.svg',
-                          color: onSurface,
-                        ),
-                        title: 'Analytics',
-                      ),
-                      Divider(
-                        thickness: 1,
-                        color: theme.colorScheme.background,
-                      ),
-                      SideBarListTile(
-                        leadingWidget: SvgIcon.asset(
-                          'assets/side_bar_icons/news_light.svg',
-                          color: onSurface,
-                        ),
-                        title: 'News',
-                      ),
-                      SideBarListTile(
-                        leadingWidget: SvgIcon.asset(
-                          'assets/side_bar_icons/settings_light.svg',
-                          color: onSurface,
-                        ),
-                        title: 'Settings',
-                      ),
-                      const SizedBox(
-                        height: 100,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15,
-                vertical: 8,
-              ),
-              child: const ProfileListTile(
-                leadingImage: ImageAssetProvider('assets/user_profile.png'),
-                title: 'Richard',
-                subtitle: '9394lay@gmail.com',
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 class _FloatingButton extends StatelessWidget {
