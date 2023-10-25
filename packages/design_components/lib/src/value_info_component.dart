@@ -26,6 +26,7 @@ class ValueInfoComponent extends StatelessWidget {
   ///
   final bool isUp;
 
+  ///
   final double? fontSizeOverride;
 
   ///

@@ -28,7 +28,11 @@ enum _HomePageDesktopLayout {
 }
 
 const _topCardHeight = 88.0;
+
+///
 const bodyPaddingVertical = 30.0;
+
+///
 const bodyPaddingHorizontal = 24.0;
 
 ///

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../bar_chart/bar_chart.dart';
+import '../../widgets/bar_chart/bar_chart.dart';
 import '../home_page_desktop.dart';
 
 ///

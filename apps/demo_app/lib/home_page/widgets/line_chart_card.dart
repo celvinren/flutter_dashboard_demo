@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../line_chart/line_chart.dart';
+import '../../widgets/line_chart_widget/line_chart_widget.dart';
 import '../home_page_desktop.dart';
 
 ///
@@ -12,7 +12,7 @@ class LineChartCard extends StatelessWidget {
   Widget build(final BuildContext context) => const Card(
         child: Padding(
           padding: EdgeInsets.all(bodyPaddingVertical),
-          child: LineChartSample1(),
+          child: LineChartWidget(),
         ),
       );
 }

@@ -42,37 +42,37 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Card(
-              margin: const EdgeInsets.symmetric(horizontal: 15),
+            const Card(
+              margin: EdgeInsets.symmetric(horizontal: 15),
               child: Padding(
-                padding: const EdgeInsets.all(15),
+                padding: EdgeInsets.all(15),
                 child: Column(
                   children: [
                     Row(
-                      children: const [
+                      children: [
                         CardTitle(title: 'Details'),
                       ],
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 20,
                     ),
-                    const TitleValueListTile(
+                    TitleValueListTile(
                       title: 'Previous Close',
                       value: '4,324.32',
                     ),
-                    const TitleValueListTile(
+                    TitleValueListTile(
                       title: 'Year Range',
                       value: '4,834.32 - 4,932.53',
                     ),
-                    const TitleValueListTile(
+                    TitleValueListTile(
                       title: 'Day Range',
                       value: '2,623.28 - 3,823.74',
                     ),
-                    const TitleValueListTile(
+                    TitleValueListTile(
                       title: 'Market Cap',
                       value: r'$23.7 T USD',
                     ),
-                    const TitleValueListTile(
+                    TitleValueListTile(
                       title: 'P/E Ratio',
                       value: '82.73',
                     ),

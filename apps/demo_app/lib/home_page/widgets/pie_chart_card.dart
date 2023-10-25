@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../pie_chart/pie_chart.dart';
+import '../../widgets/pie_chart_widget/pie_chart_widget.dart';
 import '../home_page_desktop.dart';
 
 ///
@@ -12,7 +12,7 @@ class PieChartCard extends StatelessWidget {
   Widget build(final BuildContext context) => const Card(
         child: Padding(
           padding: EdgeInsets.all(bodyPaddingVertical),
-          child: PieChartSample2(),
+          child: PieChartWidget(),
         ),
       );
 }

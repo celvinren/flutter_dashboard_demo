@@ -2,7 +2,9 @@ import 'package:design_components/design_components.dart';
 import 'package:design_icons/design_icons.dart';
 import 'package:flutter/material.dart';
 
+///
 class LeftMenu extends StatelessWidget {
+  ///
   const LeftMenu();
 
   static const _menuWidth = 280.0;

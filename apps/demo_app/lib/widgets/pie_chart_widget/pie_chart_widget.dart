@@ -2,52 +2,51 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class PieChartSample2 extends StatefulWidget {
-  const PieChartSample2({super.key});
-
-  @override
-  State<StatefulWidget> createState() => PieChart2State();
-}
-
-class PieChart2State extends State {
-  int touchedIndex = -1;
+///
+class PieChartWidget extends HookWidget {
+  ///
+  const PieChartWidget({super.key});
 
   @override
-  Widget build(final BuildContext context) => AspectRatio(
-        aspectRatio: 1,
-        child: LayoutBuilder(
-          builder: (final context, final constraints) => PieChart(
-            PieChartData(
-              pieTouchData: PieTouchData(
-                touchCallback: (final event, final pieTouchResponse) {
-                  setState(() {
-                    if (!event.isInterestedForInteractions ||
-                        pieTouchResponse == null ||
-                        pieTouchResponse.touchedSection == null) {
-                      touchedIndex = -1;
-                      return;
-                    }
-                    touchedIndex =
-                        pieTouchResponse.touchedSection!.touchedSectionIndex;
-                  });
-                },
-              ),
-              borderData: FlBorderData(
-                show: false,
-              ),
-              sectionsSpace: 0,
-              centerSpaceRadius:
-                  ([constraints.maxHeight, constraints.maxWidth].reduce(min) -
-                          60) /
-                      2,
-              sections: showingSections(),
+  Widget build(final BuildContext context) {
+    final touchedIndex = useState(-1);
+
+    return AspectRatio(
+      aspectRatio: 1,
+      child: LayoutBuilder(
+        builder: (final context, final constraints) => PieChart(
+          PieChartData(
+            pieTouchData: PieTouchData(
+              touchCallback: (final event, final pieTouchResponse) {
+                if (!event.isInterestedForInteractions ||
+                    pieTouchResponse == null ||
+                    pieTouchResponse.touchedSection == null) {
+                  touchedIndex.value = -1;
+                  return;
+                }
+                touchedIndex.value =
+                    pieTouchResponse.touchedSection!.touchedSectionIndex;
+              },
             ),
+            borderData: FlBorderData(
+              show: false,
+            ),
+            sectionsSpace: 0,
+            centerSpaceRadius:
+                ([constraints.maxHeight, constraints.maxWidth].reduce(min) -
+                        60) /
+                    2,
+            sections: _showingSections(touchedIndex.value),
           ),
         ),
-      );
+      ),
+    );
+  }
 
-  List<PieChartSectionData> showingSections() => List.generate(
+  List<PieChartSectionData> _showingSections(final int touchedIndex) =>
+      List.generate(
         5,
         (final i) {
           final isTouched = i == touchedIndex;
@@ -123,46 +122,5 @@ class PieChart2State extends State {
               throw Error();
           }
         },
-      );
-}
-
-class Indicator extends StatelessWidget {
-  const Indicator({
-    required this.color,
-    required this.text,
-    required this.isSquare,
-    super.key,
-    this.size = 16,
-    this.textColor = const Color(0xff505050),
-  });
-  final Color color;
-  final String text;
-  final bool isSquare;
-  final double size;
-  final Color textColor;
-
-  @override
-  Widget build(final BuildContext context) => Row(
-        children: <Widget>[
-          Container(
-            width: size,
-            height: size,
-            decoration: BoxDecoration(
-              shape: isSquare ? BoxShape.rectangle : BoxShape.circle,
-              color: color,
-            ),
-          ),
-          const SizedBox(
-            width: 4,
-          ),
-          Text(
-            text,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: textColor,
-            ),
-          )
-        ],
       );
 }
