@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -35,95 +37,101 @@ class PieChart2State extends State {
                 show: false,
               ),
               sectionsSpace: 0,
-              centerSpaceRadius: (constraints.maxWidth - 60) / 2,
+              centerSpaceRadius:
+                  ([constraints.maxHeight, constraints.maxWidth].reduce(min) -
+                          60) /
+                      2,
               sections: showingSections(),
             ),
           ),
         ),
       );
 
-  List<PieChartSectionData> showingSections() => List.generate(5, (final i) {
-        final isTouched = i == touchedIndex;
-        final fontSize = isTouched ? 25.0 : 16.0;
-        final radius = isTouched ? 60.0 : 20.0;
-        switch (i) {
-          case 0:
-            return PieChartSectionData(
-              color: const Color(0xff956AFF),
-              value: 40,
-              showTitle: false,
-              title: '40%',
-              radius: radius,
-              titleStyle: TextStyle(
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xffffffff),
-              ),
-            );
-          case 1:
-            return PieChartSectionData(
-              color: const Color(0xff007AFF),
-              value: 30,
-              showTitle: false,
-              title: '30%',
-              radius: radius,
-              titleStyle: TextStyle(
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xffffffff),
-              ),
-            );
-          case 2:
-            return PieChartSectionData(
-              color: const Color(0xff02CACD),
-              value: 15,
-              showTitle: false,
-              title: '15%',
-              radius: radius,
-              titleStyle: TextStyle(
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xffffffff),
-              ),
-            );
-          case 3:
-            return PieChartSectionData(
-              color: const Color(0xffFDAD15),
-              value: 15,
-              showTitle: false,
-              title: '15%',
-              radius: radius,
-              titleStyle: TextStyle(
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xffffffff),
-              ),
-            );
-          case 4:
-            return PieChartSectionData(
-              color: const Color(0xff2AC670),
-              value: 15,
-              showTitle: false,
-              title: '15%',
-              radius: radius,
-              titleStyle: TextStyle(
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xffffffff),
-              ),
-            );
-          default:
-            throw Error();
-        }
-      });
+  List<PieChartSectionData> showingSections() => List.generate(
+        5,
+        (final i) {
+          final isTouched = i == touchedIndex;
+          final fontSize = isTouched ? 25.0 : 16.0;
+          final radius = isTouched ? 30.0 : 20.0;
+          switch (i) {
+            case 0:
+              return PieChartSectionData(
+                color: const Color(0xff956AFF),
+                value: 40,
+                showTitle: false,
+                title: '40%',
+                radius: radius,
+                titleStyle: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
+                  color: const Color(0xffffffff),
+                ),
+              );
+            case 1:
+              return PieChartSectionData(
+                color: const Color(0xff007AFF),
+                value: 30,
+                showTitle: false,
+                title: '30%',
+                radius: radius,
+                titleStyle: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
+                  color: const Color(0xffffffff),
+                ),
+              );
+            case 2:
+              return PieChartSectionData(
+                color: const Color(0xff02CACD),
+                value: 15,
+                showTitle: false,
+                title: '15%',
+                radius: radius,
+                titleStyle: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
+                  color: const Color(0xffffffff),
+                ),
+              );
+            case 3:
+              return PieChartSectionData(
+                color: const Color(0xffFDAD15),
+                value: 15,
+                showTitle: false,
+                title: '15%',
+                radius: radius,
+                titleStyle: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
+                  color: const Color(0xffffffff),
+                ),
+              );
+            case 4:
+              return PieChartSectionData(
+                color: const Color(0xff2AC670),
+                value: 15,
+                showTitle: false,
+                title: '15%',
+                radius: radius,
+                titleStyle: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
+                  color: const Color(0xffffffff),
+                ),
+              );
+            default:
+              throw Error();
+          }
+        },
+      );
 }
 
 class Indicator extends StatelessWidget {
   const Indicator({
-    super.key,
     required this.color,
     required this.text,
     required this.isSquare,
+    super.key,
     this.size = 16,
     this.textColor = const Color(0xff505050),
   });
