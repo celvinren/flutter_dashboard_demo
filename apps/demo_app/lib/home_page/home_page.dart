@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   /// The title of the page.
   final String title;
 
-  static const _mobileWidth = 600;
+  static const _mobileWidth = 760;
   @override
   Widget build(final BuildContext context) => LayoutBuilder(
         builder: (final context, final constraints) =>

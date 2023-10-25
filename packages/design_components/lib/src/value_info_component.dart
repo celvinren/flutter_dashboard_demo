@@ -10,6 +10,7 @@ class ValueInfoComponent extends StatelessWidget {
     required this.value,
     required this.isUp,
     required this.percent,
+    this.fontSizeOverride,
     super.key,
   });
 
@@ -26,9 +27,11 @@ class ValueInfoComponent extends StatelessWidget {
   final bool isUp;
 
   ///
+  final double? fontSizeOverride;
+
+  ///
   final String percent;
 
-  static const _firstColumnWidth = 40.0;
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
@@ -41,55 +44,53 @@ class ValueInfoComponent extends StatelessWidget {
         ? (theme.colorScheme.secondary as MaterialColor).shade300
         : theme.colorScheme.secondary;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            SizedBox(
-              width: _firstColumnWidth,
-              child: icon,
-            ),
-            Text(
-              title,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: onSurface,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              icon,
+              Text(
+                title,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: onSurface,
+                ),
               ),
-            ),
-          ],
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              width: _firstColumnWidth,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  value,
-                  style: theme.textTheme.labelLarge?.copyWith(
-                    color: theme.colorScheme.onSurface,
-                  ),
-                ),
-                Row(
-                  children: [
-                    SvgIcon.asset(isUp ? 'assets/up.svg' : 'assets/down.svg'),
-                    Text(
-                      '$percent%',
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: isUp ? secondary : theme.colorScheme.error,
-                      ),
+            ],
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    value,
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: theme.colorScheme.onSurface,
+                      fontSize: fontSizeOverride,
                     ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
+                  ),
+                  Row(
+                    children: [
+                      SvgIcon.asset(isUp ? 'assets/up.svg' : 'assets/down.svg'),
+                      Text(
+                        '$percent%',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: isUp ? secondary : theme.colorScheme.error,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
