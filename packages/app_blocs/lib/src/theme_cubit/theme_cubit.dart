@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 ///
 class ThemeCubit extends Cubit<ThemeState> {
   ///
-  ThemeCubit() : super(const ThemeState(isDarkMode: false));
+  ThemeCubit() : super(const ThemeState(isDarkMode: true));
 
   ///
   void onChangeTheme() {
