@@ -1,12 +1,12 @@
 import 'dart:math';
 
-import 'package:app_blocs/app_blocs.dart';
 import 'package:design_components/design_components.dart';
 import 'package:design_icons/design_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'widgets/bar_chart_card.dart';
+import 'widgets/data_list_card.dart';
+import 'widgets/floating_button.dart';
 import 'widgets/left_menu.dart';
 import 'widgets/line_chart_card.dart';
 import 'widgets/pie_chart_card.dart';
@@ -46,7 +46,7 @@ class HomePageDesktop extends StatelessWidget {
             _Body(),
           ],
         ),
-        floatingActionButton: _FloatingButton(),
+        floatingActionButton: FloatingButton(),
       );
 }
 
@@ -156,7 +156,7 @@ class _ChartsLarge extends StatelessWidget {
               child: const Row(
                 children: [
                   Expanded(flex: 2, child: BarChartCard()),
-                  SizedBox(width: 333, child: _DataListCard()),
+                  SizedBox(width: 333, child: DataListCard()),
                 ],
               ),
             ),
@@ -194,7 +194,7 @@ class _ChartsSmall extends StatelessWidget {
           children: [
             const SizedBox(
               height: 333,
-              child: _DataListCard(),
+              child: DataListCard(),
             ),
             const SizedBox(
               height: 300,
@@ -211,71 +211,5 @@ class _ChartsSmall extends StatelessWidget {
             ),
           ],
         ),
-      );
-}
-
-class _DataListCard extends StatelessWidget {
-  const _DataListCard();
-
-  @override
-  Widget build(final BuildContext context) => const Card(
-        child: Padding(
-          padding: EdgeInsets.all(bodyPaddingVertical),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  CardTitle(title: 'Details'),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TitleValueListTile(
-                title: 'Previous Close',
-                value: '4,324.32',
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TitleValueListTile(
-                title: 'Year Range',
-                value: '4,834.32 - 4,932.53',
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TitleValueListTile(
-                title: 'Day Range',
-                value: '2,623.28 - 3,823.74',
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TitleValueListTile(
-                title: 'Market Cap',
-                value: r'$23.7 T USD',
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TitleValueListTile(
-                title: 'P/E Ratio',
-                value: '82.73',
-              ),
-            ],
-          ),
-        ),
-      );
-}
-
-class _FloatingButton extends StatelessWidget {
-  const _FloatingButton();
-
-  @override
-  Widget build(final BuildContext context) => FloatingActionButton(
-        onPressed: () => context.read<ThemeCubit>().onChangeTheme(),
-        tooltip: 'Change Theme',
-        child: const Icon(Icons.brightness_4),
       );
 }
