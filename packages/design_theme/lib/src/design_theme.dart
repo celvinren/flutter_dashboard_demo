@@ -137,7 +137,7 @@ class DesignTheme extends _DesignTheme {
   @override
   ColorScheme get _lightColorScheme => const ColorScheme(
         brightness: Brightness.light,
-        background: Color(0xFFF2F4F6),
+        background: Color.fromARGB(255, 211, 215, 219),
         onBackground: Color(0XFF060F1D),
         surface: Color(0XFFFFFFFF),
         onSurface: MaterialColor(

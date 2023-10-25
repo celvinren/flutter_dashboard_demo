@@ -34,6 +34,7 @@ class App extends StatelessWidget {
           ],
           theme: const DesignTheme().light,
           darkTheme: const DesignTheme().dark,
+          themeMode: state.isDarkMode ? ThemeMode.dark : ThemeMode.light,
           home: const HomePage(title: 'Flutter Demo Home Page1'),
         ),
       );
