@@ -10,13 +10,13 @@ import 'data_repository_state.dart';
 class DataRepository extends Cubit<DataRepositoryState> {
   ///
   DataRepository() : super(const DataRepositoryState.success()) {
-    demoDataStream = FirebaseFirestore.instance
+    _demoDataStream = FirebaseFirestore.instance
         .collection('demoData')
         .doc('DONOAWzQYiuHqeHjo8eJ')
         .snapshots()
         .asBroadcastStream();
 
-    demoDataStream.listen((final data) {
+    _demoDataStreamSubscription = _demoDataStream?.listen((final data) {
       final rawData = data.data();
       if (rawData != null) {
         final firebaseData = FirebaseDataDto.fromJson(rawData);
@@ -31,6 +31,14 @@ class DataRepository extends Cubit<DataRepositoryState> {
     });
   }
 
-  // ignore: public_member_api_docs
-  late Stream<DocumentSnapshot<Map<String, dynamic>>> demoDataStream;
+  StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>?
+      _demoDataStreamSubscription;
+  Stream<DocumentSnapshot<Map<String, dynamic>>>? _demoDataStream;
+
+  @override
+  Future<void> close() {
+    _demoDataStreamSubscription?.cancel();
+
+    return super.close();
+  }
 }
