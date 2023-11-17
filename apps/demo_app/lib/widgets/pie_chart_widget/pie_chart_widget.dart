@@ -7,7 +7,18 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 ///
 class PieChartWidget extends HookWidget {
   ///
-  const PieChartWidget({super.key});
+  const PieChartWidget({required this.sections, super.key});
+
+  static const _colors = [
+    Color(0xff956AFF),
+    Color(0xff007AFF),
+    Color(0xff02CACD),
+    Color(0xffFDAD15),
+    Color(0xff2AC670),
+  ];
+
+  ///
+  final List<double> sections;
 
   @override
   Widget build(final BuildContext context) {
@@ -48,79 +59,18 @@ class PieChartWidget extends HookWidget {
   List<PieChartSectionData> _showingSections(final int touchedIndex) =>
       List.generate(
         5,
-        (final i) {
-          final isTouched = i == touchedIndex;
-          final fontSize = isTouched ? 25.0 : 16.0;
-          final radius = isTouched ? 30.0 : 20.0;
-          switch (i) {
-            case 0:
-              return PieChartSectionData(
-                color: const Color(0xff956AFF),
-                value: 40,
-                showTitle: false,
-                title: '40%',
-                radius: radius,
-                titleStyle: TextStyle(
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xffffffff),
-                ),
-              );
-            case 1:
-              return PieChartSectionData(
-                color: const Color(0xff007AFF),
-                value: 30,
-                showTitle: false,
-                title: '30%',
-                radius: radius,
-                titleStyle: TextStyle(
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xffffffff),
-                ),
-              );
-            case 2:
-              return PieChartSectionData(
-                color: const Color(0xff02CACD),
-                value: 15,
-                showTitle: false,
-                title: '15%',
-                radius: radius,
-                titleStyle: TextStyle(
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xffffffff),
-                ),
-              );
-            case 3:
-              return PieChartSectionData(
-                color: const Color(0xffFDAD15),
-                value: 15,
-                showTitle: false,
-                title: '15%',
-                radius: radius,
-                titleStyle: TextStyle(
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xffffffff),
-                ),
-              );
-            case 4:
-              return PieChartSectionData(
-                color: const Color(0xff2AC670),
-                value: 15,
-                showTitle: false,
-                title: '15%',
-                radius: radius,
-                titleStyle: TextStyle(
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xffffffff),
-                ),
-              );
-            default:
-              throw Error();
-          }
-        },
+        (final i) => PieChartSectionData(
+          color: _colors[i],
+          value: sections[i],
+          showTitle: true,
+          title: '\$${sections[i]}k',
+          titlePositionPercentageOffset: 2,
+          radius: i == touchedIndex ? 30.0 : 20.0,
+          titleStyle: TextStyle(
+            fontSize: i == touchedIndex ? 25.0 : 16.0,
+            fontWeight: FontWeight.bold,
+            color: const Color(0xffffffff),
+          ),
+        ),
       );
 }
