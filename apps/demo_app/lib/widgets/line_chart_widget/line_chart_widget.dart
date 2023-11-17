@@ -1,10 +1,20 @@
+import 'package:data_models/data_models.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 ///
 class LineChartWidget extends StatelessWidget {
   ///
-  const LineChartWidget();
+  const LineChartWidget({required this.dataList});
+
+  static const List<Color> _colors = [
+    Color(0xff4af699),
+    Color(0xffaa4cfc),
+    Color(0xff27b6fc),
+  ];
+
+  /// Data list for line chart.
+  final List<List<LineChartDataModel>> dataList;
 
   @override
   Widget build(final BuildContext context) => LineChart(
@@ -19,7 +29,7 @@ class LineChartWidget extends StatelessWidget {
         borderData: _borderData,
         lineBarsData: _lineBarsData1,
         minX: 0,
-        maxX: 14,
+        maxX: 12,
         maxY: 4,
         minY: 0,
       );
@@ -47,12 +57,29 @@ class LineChartWidget extends StatelessWidget {
       );
 
   List<LineChartBarData> get _lineBarsData1 => [
-        _lineChartBarData1_1,
-        _lineChartBarData1_2,
-        _lineChartBarData1_3,
+        for (int e = 0; e < dataList.length; e++)
+          LineChartBarData(
+            isCurved: true,
+            color: _colors[e],
+            barWidth: 4,
+            isStrokeCapRound: true,
+            dotData: FlDotData(show: false),
+            belowBarData: BarAreaData(show: false),
+            spots: dataList[e]
+                .map(
+                  (final i) => FlSpot(
+                    i.index.toDouble(),
+                    i.value,
+                  ),
+                )
+                .toList(),
+          ),
       ];
 
-  Widget _leftTitleWidgets(final double value, final TitleMeta meta) {
+  Widget _leftTitleWidgets(
+    final double value,
+    final TitleMeta meta,
+  ) {
     const style = TextStyle(
       color: Color(0xff75729e),
       fontWeight: FontWeight.bold,
@@ -97,14 +124,23 @@ class LineChartWidget extends StatelessWidget {
     );
     Widget text;
     switch (value.toInt()) {
-      case 2:
-        text = const Text('SEPT', style: style);
+      case 1:
+        text = const Text('Jan', style: style);
+        break;
+      case 3:
+        text = const Text('Mar', style: style);
+        break;
+      case 5:
+        text = const Text('May', style: style);
         break;
       case 7:
-        text = const Text('OCT', style: style);
+        text = const Text('Jul', style: style);
         break;
-      case 12:
-        text = const Text('DEC', style: style);
+      case 9:
+        text = const Text('Sep', style: style);
+        break;
+      case 11:
+        text = const Text('Nov', style: style);
         break;
       default:
         text = const Text('');
@@ -135,59 +171,5 @@ class LineChartWidget extends StatelessWidget {
           right: BorderSide(color: Colors.transparent),
           top: BorderSide(color: Colors.transparent),
         ),
-      );
-
-  LineChartBarData get _lineChartBarData1_1 => LineChartBarData(
-        isCurved: true,
-        color: const Color(0xff4af699),
-        barWidth: 8,
-        isStrokeCapRound: true,
-        dotData: FlDotData(show: false),
-        belowBarData: BarAreaData(show: false),
-        spots: const [
-          FlSpot(1, 1),
-          FlSpot(3, 1.5),
-          FlSpot(5, 1.4),
-          FlSpot(7, 3.4),
-          FlSpot(10, 2),
-          FlSpot(12, 2.2),
-          FlSpot(13, 1.8),
-        ],
-      );
-
-  LineChartBarData get _lineChartBarData1_2 => LineChartBarData(
-        isCurved: true,
-        color: const Color(0xffaa4cfc),
-        barWidth: 8,
-        isStrokeCapRound: true,
-        dotData: FlDotData(show: false),
-        belowBarData: BarAreaData(
-          show: false,
-          color: const Color(0x00aa4cfc),
-        ),
-        spots: const [
-          FlSpot(1, 1),
-          FlSpot(3, 2.8),
-          FlSpot(7, 1.2),
-          FlSpot(10, 2.8),
-          FlSpot(12, 2.6),
-          FlSpot(13, 3.9),
-        ],
-      );
-
-  LineChartBarData get _lineChartBarData1_3 => LineChartBarData(
-        isCurved: true,
-        color: const Color(0xff27b6fc),
-        barWidth: 8,
-        isStrokeCapRound: true,
-        dotData: FlDotData(show: false),
-        belowBarData: BarAreaData(show: false),
-        spots: const [
-          FlSpot(1, 2.8),
-          FlSpot(3, 1.9),
-          FlSpot(6, 3),
-          FlSpot(10, 1.3),
-          FlSpot(13, 2.5),
-        ],
       );
 }

@@ -11,8 +11,10 @@ class PieChartCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => const Card(
         child: Padding(
-          padding: EdgeInsets.all(bodyPaddingVertical),
-          child: PieChartWidget(),
+          padding: EdgeInsets.all(bodyPaddingVertical + 20),
+          child: PieChartWidget(
+            sections: [40, 30, 15, 15, 15],
+          ),
         ),
       );
 }

@@ -1,3 +1,4 @@
+import 'package:data_models/data_models.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -5,33 +6,27 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 ///
 class BarChartSample2 extends HookWidget {
   ///
-  const BarChartSample2();
-  static const _leftBarColor = Color(0xff53fdd7);
-  static const _rightBarColor = Color(0xffff5182);
+  const BarChartSample2({required this.data});
+
+  static const _colors = [
+    Color(0xff53fdd7),
+    Color(0xffff5182),
+    Color(0xffffcd3c),
+  ];
   static const _width = 7.0;
+
+  final List<BarChartDataModel> data;
 
   @override
   Widget build(final BuildContext context) {
     final touchedGroupIndex = useState(-1);
 
-    final rawBarGroups = useState([
-      _makeGroupData(0, 5, 12),
-      _makeGroupData(1, 16, 12),
-      _makeGroupData(2, 18, 5),
-      _makeGroupData(3, 20, 16),
-      _makeGroupData(4, 17, 6),
-      _makeGroupData(5, 19, 1.5),
-      _makeGroupData(6, 10, 1.5),
-    ]);
-    final showingBarGroups = useState([
-      _makeGroupData(0, 5, 12),
-      _makeGroupData(1, 16, 12),
-      _makeGroupData(2, 18, 5),
-      _makeGroupData(3, 20, 16),
-      _makeGroupData(4, 17, 6),
-      _makeGroupData(5, 19, 1.5),
-      _makeGroupData(6, 10, 1.5),
-    ]);
+    final rawBarGroups = useState(
+      data.map((final e) => _makeGroupData(e.index, e.values)).toList(),
+    );
+    final showingBarGroups = useState(
+      data.map((final e) => _makeGroupData(e.index, e.values)).toList(),
+    );
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -128,6 +123,7 @@ class BarChartSample2 extends HookWidget {
     } else {
       return Container();
     }
+
     return SideTitleWidget(
       axisSide: meta.axisSide,
       space: 0,
@@ -156,23 +152,18 @@ class BarChartSample2 extends HookWidget {
 
   BarChartGroupData _makeGroupData(
     final int x,
-    final double y1,
-    final double y2,
+    final List<double> dataList,
   ) =>
       BarChartGroupData(
         barsSpace: 4,
         x: x,
         barRods: [
-          BarChartRodData(
-            toY: y1,
-            color: _leftBarColor,
-            width: _width,
-          ),
-          BarChartRodData(
-            toY: y2,
-            color: _rightBarColor,
-            width: _width,
-          ),
+          for (int i = 0; i < dataList.length; i++)
+            BarChartRodData(
+              toY: dataList[i],
+              color: _colors[i],
+              width: _width,
+            ),
         ],
       );
 }
