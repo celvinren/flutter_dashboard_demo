@@ -10,8 +10,8 @@ class DataRepositoryState with _$DataRepositoryState {
   ///
   const factory DataRepositoryState.success({
     @Default(<BarChartDataModel>[]) final List<BarChartDataModel>? barChartData,
-    @Default(<LineChartDataModel>[])
-    final List<LineChartDataModel>? lineChartData,
-    @Default(<int>[]) final List<int>? pieChartData,
+    @Default(<Map<String, List<LineChartDataModel>>>[])
+    final List<Map<String, List<LineChartDataModel>>>? lineChartData,
+    @Default(<double>[]) final List<double>? pieChartData,
   }) = Success;
 }

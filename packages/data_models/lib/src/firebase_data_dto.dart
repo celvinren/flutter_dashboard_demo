@@ -6,12 +6,14 @@ part 'firebase_data_dto.freezed.dart';
 part 'firebase_data_dto.g.dart';
 
 @freezed
+
+///
 class FirebaseDataDto with _$FirebaseDataDto {
   ///
   const factory FirebaseDataDto({
-    required final List<LineChartDataModel> lineChartData,
+    required final List<Map<String, List<LineChartDataModel>>> lineChartData,
     required final List<BarChartDataModel> barChartData,
-    required final List<int> pieChartData,
+    required final List<double> pieChartData,
   }) = _FirebaseDataDto;
 
   ///

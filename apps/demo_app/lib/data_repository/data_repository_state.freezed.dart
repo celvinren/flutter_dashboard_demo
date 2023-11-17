@@ -18,27 +18,33 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DataRepositoryState {
   List<BarChartDataModel>? get barChartData =>
       throw _privateConstructorUsedError;
-  List<LineChartDataModel>? get lineChartData =>
+  List<Map<String, List<LineChartDataModel>>>? get lineChartData =>
       throw _privateConstructorUsedError;
-  List<int>? get pieChartData => throw _privateConstructorUsedError;
+  List<double>? get pieChartData => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<BarChartDataModel>? barChartData,
-            List<LineChartDataModel>? lineChartData, List<int>? pieChartData)
+    required TResult Function(
+            List<BarChartDataModel>? barChartData,
+            List<Map<String, List<LineChartDataModel>>>? lineChartData,
+            List<double>? pieChartData)
         success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<BarChartDataModel>? barChartData,
-            List<LineChartDataModel>? lineChartData, List<int>? pieChartData)?
+    TResult? Function(
+            List<BarChartDataModel>? barChartData,
+            List<Map<String, List<LineChartDataModel>>>? lineChartData,
+            List<double>? pieChartData)?
         success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<BarChartDataModel>? barChartData,
-            List<LineChartDataModel>? lineChartData, List<int>? pieChartData)?
+    TResult Function(
+            List<BarChartDataModel>? barChartData,
+            List<Map<String, List<LineChartDataModel>>>? lineChartData,
+            List<double>? pieChartData)?
         success,
     required TResult orElse(),
   }) =>
@@ -73,8 +79,8 @@ abstract class $DataRepositoryStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<BarChartDataModel>? barChartData,
-      List<LineChartDataModel>? lineChartData,
-      List<int>? pieChartData});
+      List<Map<String, List<LineChartDataModel>>>? lineChartData,
+      List<double>? pieChartData});
 }
 
 /// @nodoc
@@ -102,11 +108,11 @@ class _$DataRepositoryStateCopyWithImpl<$Res, $Val extends DataRepositoryState>
       lineChartData: freezed == lineChartData
           ? _value.lineChartData
           : lineChartData // ignore: cast_nullable_to_non_nullable
-              as List<LineChartDataModel>?,
+              as List<Map<String, List<LineChartDataModel>>>?,
       pieChartData: freezed == pieChartData
           ? _value.pieChartData
           : pieChartData // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+              as List<double>?,
     ) as $Val);
   }
 }
@@ -120,8 +126,8 @@ abstract class _$$SuccessCopyWith<$Res>
   @useResult
   $Res call(
       {List<BarChartDataModel>? barChartData,
-      List<LineChartDataModel>? lineChartData,
-      List<int>? pieChartData});
+      List<Map<String, List<LineChartDataModel>>>? lineChartData,
+      List<double>? pieChartData});
 }
 
 /// @nodoc
@@ -146,11 +152,11 @@ class __$$SuccessCopyWithImpl<$Res>
       lineChartData: freezed == lineChartData
           ? _value._lineChartData
           : lineChartData // ignore: cast_nullable_to_non_nullable
-              as List<LineChartDataModel>?,
+              as List<Map<String, List<LineChartDataModel>>>?,
       pieChartData: freezed == pieChartData
           ? _value._pieChartData
           : pieChartData // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+              as List<double>?,
     ));
   }
 }
@@ -161,9 +167,9 @@ class _$Success implements Success {
   const _$Success(
       {final List<BarChartDataModel>? barChartData =
           const <BarChartDataModel>[],
-      final List<LineChartDataModel>? lineChartData =
-          const <LineChartDataModel>[],
-      final List<int>? pieChartData = const <int>[]})
+      final List<Map<String, List<LineChartDataModel>>>? lineChartData =
+          const <Map<String, List<LineChartDataModel>>>[],
+      final List<double>? pieChartData = const <double>[]})
       : _barChartData = barChartData,
         _lineChartData = lineChartData,
         _pieChartData = pieChartData;
@@ -178,20 +184,20 @@ class _$Success implements Success {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<LineChartDataModel>? _lineChartData;
+  final List<Map<String, List<LineChartDataModel>>>? _lineChartData;
   @override
   @JsonKey()
-  List<LineChartDataModel>? get lineChartData {
+  List<Map<String, List<LineChartDataModel>>>? get lineChartData {
     final value = _lineChartData;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
-  final List<int>? _pieChartData;
+  final List<double>? _pieChartData;
   @override
   @JsonKey()
-  List<int>? get pieChartData {
+  List<double>? get pieChartData {
     final value = _pieChartData;
     if (value == null) return null;
     // ignore: implicit_dynamic_type
@@ -232,8 +238,10 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<BarChartDataModel>? barChartData,
-            List<LineChartDataModel>? lineChartData, List<int>? pieChartData)
+    required TResult Function(
+            List<BarChartDataModel>? barChartData,
+            List<Map<String, List<LineChartDataModel>>>? lineChartData,
+            List<double>? pieChartData)
         success,
   }) {
     return success(barChartData, lineChartData, pieChartData);
@@ -242,8 +250,10 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<BarChartDataModel>? barChartData,
-            List<LineChartDataModel>? lineChartData, List<int>? pieChartData)?
+    TResult? Function(
+            List<BarChartDataModel>? barChartData,
+            List<Map<String, List<LineChartDataModel>>>? lineChartData,
+            List<double>? pieChartData)?
         success,
   }) {
     return success?.call(barChartData, lineChartData, pieChartData);
@@ -252,8 +262,10 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<BarChartDataModel>? barChartData,
-            List<LineChartDataModel>? lineChartData, List<int>? pieChartData)?
+    TResult Function(
+            List<BarChartDataModel>? barChartData,
+            List<Map<String, List<LineChartDataModel>>>? lineChartData,
+            List<double>? pieChartData)?
         success,
     required TResult orElse(),
   }) {
@@ -295,15 +307,15 @@ class _$Success implements Success {
 abstract class Success implements DataRepositoryState {
   const factory Success(
       {final List<BarChartDataModel>? barChartData,
-      final List<LineChartDataModel>? lineChartData,
-      final List<int>? pieChartData}) = _$Success;
+      final List<Map<String, List<LineChartDataModel>>>? lineChartData,
+      final List<double>? pieChartData}) = _$Success;
 
   @override
   List<BarChartDataModel>? get barChartData;
   @override
-  List<LineChartDataModel>? get lineChartData;
+  List<Map<String, List<LineChartDataModel>>>? get lineChartData;
   @override
-  List<int>? get pieChartData;
+  List<double>? get pieChartData;
   @override
   @JsonKey(ignore: true)
   _$$SuccessCopyWith<_$Success> get copyWith =>

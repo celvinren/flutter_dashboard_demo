@@ -10,13 +10,21 @@ _$FirebaseDataDtoImpl _$$FirebaseDataDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$FirebaseDataDtoImpl(
       lineChartData: (json['lineChartData'] as List<dynamic>)
-          .map((e) => LineChartDataModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => (e as Map<String, dynamic>).map(
+                (k, e) => MapEntry(
+                    k,
+                    (e as List<dynamic>)
+                        .map((e) => LineChartDataModel.fromJson(
+                            e as Map<String, dynamic>))
+                        .toList()),
+              ))
           .toList(),
       barChartData: (json['barChartData'] as List<dynamic>)
           .map((e) => BarChartDataModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      pieChartData:
-          (json['pieChartData'] as List<dynamic>).map((e) => e as int).toList(),
+      pieChartData: (json['pieChartData'] as List<dynamic>)
+          .map((e) => (e as num).toDouble())
+          .toList(),
     );
 
 Map<String, dynamic> _$$FirebaseDataDtoImplToJson(

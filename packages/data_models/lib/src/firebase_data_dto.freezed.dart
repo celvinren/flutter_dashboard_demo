@@ -20,11 +20,11 @@ FirebaseDataDto _$FirebaseDataDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FirebaseDataDto {
-  List<LineChartDataModel> get lineChartData =>
+  List<Map<String, List<LineChartDataModel>>> get lineChartData =>
       throw _privateConstructorUsedError;
   List<BarChartDataModel> get barChartData =>
       throw _privateConstructorUsedError;
-  List<int> get pieChartData => throw _privateConstructorUsedError;
+  List<double> get pieChartData => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,9 +39,9 @@ abstract class $FirebaseDataDtoCopyWith<$Res> {
       _$FirebaseDataDtoCopyWithImpl<$Res, FirebaseDataDto>;
   @useResult
   $Res call(
-      {List<LineChartDataModel> lineChartData,
+      {List<Map<String, List<LineChartDataModel>>> lineChartData,
       List<BarChartDataModel> barChartData,
-      List<int> pieChartData});
+      List<double> pieChartData});
 }
 
 /// @nodoc
@@ -65,7 +65,7 @@ class _$FirebaseDataDtoCopyWithImpl<$Res, $Val extends FirebaseDataDto>
       lineChartData: null == lineChartData
           ? _value.lineChartData
           : lineChartData // ignore: cast_nullable_to_non_nullable
-              as List<LineChartDataModel>,
+              as List<Map<String, List<LineChartDataModel>>>,
       barChartData: null == barChartData
           ? _value.barChartData
           : barChartData // ignore: cast_nullable_to_non_nullable
@@ -73,7 +73,7 @@ class _$FirebaseDataDtoCopyWithImpl<$Res, $Val extends FirebaseDataDto>
       pieChartData: null == pieChartData
           ? _value.pieChartData
           : pieChartData // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<double>,
     ) as $Val);
   }
 }
@@ -87,9 +87,9 @@ abstract class _$$FirebaseDataDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<LineChartDataModel> lineChartData,
+      {List<Map<String, List<LineChartDataModel>>> lineChartData,
       List<BarChartDataModel> barChartData,
-      List<int> pieChartData});
+      List<double> pieChartData});
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class __$$FirebaseDataDtoImplCopyWithImpl<$Res>
       lineChartData: null == lineChartData
           ? _value._lineChartData
           : lineChartData // ignore: cast_nullable_to_non_nullable
-              as List<LineChartDataModel>,
+              as List<Map<String, List<LineChartDataModel>>>,
       barChartData: null == barChartData
           ? _value._barChartData
           : barChartData // ignore: cast_nullable_to_non_nullable
@@ -119,7 +119,7 @@ class __$$FirebaseDataDtoImplCopyWithImpl<$Res>
       pieChartData: null == pieChartData
           ? _value._pieChartData
           : pieChartData // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<double>,
     ));
   }
 }
@@ -128,9 +128,9 @@ class __$$FirebaseDataDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FirebaseDataDtoImpl implements _FirebaseDataDto {
   const _$FirebaseDataDtoImpl(
-      {required final List<LineChartDataModel> lineChartData,
+      {required final List<Map<String, List<LineChartDataModel>>> lineChartData,
       required final List<BarChartDataModel> barChartData,
-      required final List<int> pieChartData})
+      required final List<double> pieChartData})
       : _lineChartData = lineChartData,
         _barChartData = barChartData,
         _pieChartData = pieChartData;
@@ -138,9 +138,9 @@ class _$FirebaseDataDtoImpl implements _FirebaseDataDto {
   factory _$FirebaseDataDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$FirebaseDataDtoImplFromJson(json);
 
-  final List<LineChartDataModel> _lineChartData;
+  final List<Map<String, List<LineChartDataModel>>> _lineChartData;
   @override
-  List<LineChartDataModel> get lineChartData {
+  List<Map<String, List<LineChartDataModel>>> get lineChartData {
     if (_lineChartData is EqualUnmodifiableListView) return _lineChartData;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_lineChartData);
@@ -154,9 +154,9 @@ class _$FirebaseDataDtoImpl implements _FirebaseDataDto {
     return EqualUnmodifiableListView(_barChartData);
   }
 
-  final List<int> _pieChartData;
+  final List<double> _pieChartData;
   @override
-  List<int> get pieChartData {
+  List<double> get pieChartData {
     if (_pieChartData is EqualUnmodifiableListView) return _pieChartData;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_pieChartData);
@@ -205,19 +205,19 @@ class _$FirebaseDataDtoImpl implements _FirebaseDataDto {
 
 abstract class _FirebaseDataDto implements FirebaseDataDto {
   const factory _FirebaseDataDto(
-      {required final List<LineChartDataModel> lineChartData,
+      {required final List<Map<String, List<LineChartDataModel>>> lineChartData,
       required final List<BarChartDataModel> barChartData,
-      required final List<int> pieChartData}) = _$FirebaseDataDtoImpl;
+      required final List<double> pieChartData}) = _$FirebaseDataDtoImpl;
 
   factory _FirebaseDataDto.fromJson(Map<String, dynamic> json) =
       _$FirebaseDataDtoImpl.fromJson;
 
   @override
-  List<LineChartDataModel> get lineChartData;
+  List<Map<String, List<LineChartDataModel>>> get lineChartData;
   @override
   List<BarChartDataModel> get barChartData;
   @override
-  List<int> get pieChartData;
+  List<double> get pieChartData;
   @override
   @JsonKey(ignore: true)
   _$$FirebaseDataDtoImplCopyWith<_$FirebaseDataDtoImpl> get copyWith =>

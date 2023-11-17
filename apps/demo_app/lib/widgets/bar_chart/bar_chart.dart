@@ -21,12 +21,10 @@ class BarChartSample2 extends HookWidget {
   Widget build(final BuildContext context) {
     final touchedGroupIndex = useState(-1);
 
-    final rawBarGroups = useState(
-      data.map((final e) => _makeGroupData(e.index, e.values)).toList(),
-    );
-    final showingBarGroups = useState(
-      data.map((final e) => _makeGroupData(e.index, e.values)).toList(),
-    );
+    final rawBarGroups =
+        data.map((final e) => _makeGroupData(e.index, e.values)).toList();
+    var showingBarGroups =
+        data.map((final e) => _makeGroupData(e.index, e.values)).toList();
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -41,7 +39,7 @@ class BarChartSample2 extends HookWidget {
             touchCallback: (final event, final response) {
               if (response == null || response.spot == null) {
                 touchedGroupIndex.value = -1;
-                showingBarGroups.value = List.of(rawBarGroups.value);
+                showingBarGroups = rawBarGroups;
                 return;
               }
 
@@ -49,24 +47,23 @@ class BarChartSample2 extends HookWidget {
 
               if (!event.isInterestedForInteractions) {
                 touchedGroupIndex.value = -1;
-                showingBarGroups.value = List.of(rawBarGroups.value);
+                showingBarGroups = rawBarGroups;
                 return;
               }
-              showingBarGroups.value = List.of(rawBarGroups.value);
+              showingBarGroups = rawBarGroups;
               if (touchedGroupIndex.value != -1) {
                 var sum = 0.0;
-                for (final rod in showingBarGroups
-                    .value[touchedGroupIndex.value].barRods) {
+                for (final rod
+                    in showingBarGroups[touchedGroupIndex.value].barRods) {
                   sum += rod.toY;
                 }
                 final avg = sum /
-                    showingBarGroups
-                        .value[touchedGroupIndex.value].barRods.length;
+                    showingBarGroups[touchedGroupIndex.value].barRods.length;
 
-                showingBarGroups.value[touchedGroupIndex.value] =
-                    showingBarGroups.value[touchedGroupIndex.value].copyWith(
-                  barRods: showingBarGroups
-                      .value[touchedGroupIndex.value].barRods
+                showingBarGroups[touchedGroupIndex.value] =
+                    showingBarGroups[touchedGroupIndex.value].copyWith(
+                  barRods: showingBarGroups[touchedGroupIndex.value]
+                      .barRods
                       .map((final rod) => rod.copyWith(toY: avg))
                       .toList(),
                 );
@@ -100,7 +97,7 @@ class BarChartSample2 extends HookWidget {
           borderData: FlBorderData(
             show: false,
           ),
-          barGroups: showingBarGroups.value,
+          barGroups: showingBarGroups,
           gridData: FlGridData(show: false),
         ),
       ),
