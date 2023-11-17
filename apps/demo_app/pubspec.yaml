@@ -11,6 +11,7 @@ environment:
 dependencies:
   app_blocs:
     path: ../../packages/app_blocs
+  cloud_firestore: ^4.13.1
   data_models:
     path: ../../packages/data_models
   design_components:
@@ -19,7 +20,8 @@ dependencies:
     path: ../../packages/design_icons
   design_theme:
     path: ../../packages/design_theme
-  firebase_core: ^1.22.0
+  equatable: ^2.0.5
+  firebase_core: ^2.22.0
   fl_chart: ^0.55.1
   flutter:
     sdk: flutter
@@ -27,10 +29,13 @@ dependencies:
   flutter_hooks: ^0.20.3
   flutter_localizations:
     sdk: flutter
+  freezed_annotation: ^2.4.1
 
 dev_dependencies:
+  build_runner: ^2.4.6
   dart_code_metrics: ^4.18.3
   dependency_validator: ^3.2.2
+  freezed: ^2.2.0
 
 flutter:
   uses-material-design: true

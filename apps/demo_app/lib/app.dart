@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'data_repository/data_repository.dart';
 import 'home_page/home_page.dart';
 
 /// This is the main application widget.
@@ -13,8 +14,15 @@ class App extends StatelessWidget {
   const App({super.key});
 
   ///
-  static Widget page() => BlocProvider(
-        create: (final context) => ThemeCubit(),
+  static Widget page() => MultiBlocProvider(
+        providers: [
+          BlocProvider<ThemeCubit>(
+            create: (final context) => ThemeCubit(),
+          ),
+          BlocProvider<DataRepository>(
+            create: (final context) => DataRepository(),
+          ),
+        ],
         child: const App(),
       );
 

@@ -21,12 +21,47 @@ class BarChartSample2 extends HookWidget {
   Widget build(final BuildContext context) {
     final touchedGroupIndex = useState(-1);
 
-    final rawBarGroups = useState(
-      data.map((final e) => _makeGroupData(e.index, e.values)).toList(),
-    );
-    final showingBarGroups = useState(
-      data.map((final e) => _makeGroupData(e.index, e.values)).toList(),
-    );
+    final rawBarGroups =
+        data.map((final e) => _makeGroupData(e.index, e.values)).toList();
+    var showingBarGroups = List<BarChartGroupData>.from(rawBarGroups);
+
+    void touchCallBack(
+      final FlTouchEvent event,
+      final BarTouchResponse? response,
+    ) {
+      if (response == null || response.spot == null) {
+        touchedGroupIndex.value = -1;
+        showingBarGroups = rawBarGroups;
+
+        return;
+      }
+
+      touchedGroupIndex.value = response.spot?.touchedBarGroupIndex ?? 0;
+
+      if (!event.isInterestedForInteractions) {
+        touchedGroupIndex.value = -1;
+        showingBarGroups = rawBarGroups;
+
+        return;
+      }
+      showingBarGroups = rawBarGroups;
+      if (touchedGroupIndex.value != -1) {
+        var sum = 0.0;
+        for (final rod in showingBarGroups[touchedGroupIndex.value].barRods) {
+          sum += rod.toY;
+        }
+        final avg =
+            sum / showingBarGroups[touchedGroupIndex.value].barRods.length;
+
+        showingBarGroups[touchedGroupIndex.value] =
+            showingBarGroups[touchedGroupIndex.value].copyWith(
+          barRods: showingBarGroups[touchedGroupIndex.value]
+              .barRods
+              .map((final rod) => rod.copyWith(toY: avg))
+              .toList(),
+        );
+      }
+    }
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -38,40 +73,7 @@ class BarChartSample2 extends HookWidget {
               tooltipBgColor: Colors.grey,
               getTooltipItem: (final a, final b, final c, final d) => null,
             ),
-            touchCallback: (final event, final response) {
-              if (response == null || response.spot == null) {
-                touchedGroupIndex.value = -1;
-                showingBarGroups.value = List.of(rawBarGroups.value);
-                return;
-              }
-
-              touchedGroupIndex.value = response.spot!.touchedBarGroupIndex;
-
-              if (!event.isInterestedForInteractions) {
-                touchedGroupIndex.value = -1;
-                showingBarGroups.value = List.of(rawBarGroups.value);
-                return;
-              }
-              showingBarGroups.value = List.of(rawBarGroups.value);
-              if (touchedGroupIndex.value != -1) {
-                var sum = 0.0;
-                for (final rod in showingBarGroups
-                    .value[touchedGroupIndex.value].barRods) {
-                  sum += rod.toY;
-                }
-                final avg = sum /
-                    showingBarGroups
-                        .value[touchedGroupIndex.value].barRods.length;
-
-                showingBarGroups.value[touchedGroupIndex.value] =
-                    showingBarGroups.value[touchedGroupIndex.value].copyWith(
-                  barRods: showingBarGroups
-                      .value[touchedGroupIndex.value].barRods
-                      .map((final rod) => rod.copyWith(toY: avg))
-                      .toList(),
-                );
-              }
-            },
+            touchCallback: touchCallBack,
           ),
           titlesData: FlTitlesData(
             show: true,
@@ -100,7 +102,7 @@ class BarChartSample2 extends HookWidget {
           borderData: FlBorderData(
             show: false,
           ),
-          barGroups: showingBarGroups.value,
+          barGroups: showingBarGroups,
           gridData: FlGridData(show: false),
         ),
       ),
@@ -145,7 +147,8 @@ class BarChartSample2 extends HookWidget {
 
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      space: 16, //margin top
+      // Margin top.
+      space: 16,
       child: text,
     );
   }

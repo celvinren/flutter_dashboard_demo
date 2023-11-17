@@ -14,7 +14,7 @@ class LineChartWidget extends StatelessWidget {
   ];
 
   /// Data list for line chart.
-  final List<List<LineChartDataModel>> dataList;
+  final List<Map<String, List<LineChartDataModel>>> dataList;
 
   @override
   Widget build(final BuildContext context) => LineChart(
@@ -65,14 +65,13 @@ class LineChartWidget extends StatelessWidget {
             isStrokeCapRound: true,
             dotData: FlDotData(show: false),
             belowBarData: BarAreaData(show: false),
-            spots: dataList[e]
-                .map(
-                  (final i) => FlSpot(
-                    i.index.toDouble(),
-                    i.value,
-                  ),
-                )
-                .toList(),
+            spots: [
+              for (final i in dataList[e].values.first)
+                FlSpot(
+                  i.index.toDouble(),
+                  i.value,
+                ),
+            ],
           ),
       ];
 
