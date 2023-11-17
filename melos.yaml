@@ -16,8 +16,16 @@ scripts:
       dart pub global run melos exec --fail-fast -- \
         flutter gen-l10n
     description: Run `flutter gen-l10n` for a specific package.
-    select-package:
-      depends-on: flutter_localizations
+    packageFilters:
+      dependsOn: flutter_localizations
+
+  build_runner:watch:
+    run: |
+      dart pub global run melos exec --fail-fast -- \
+        flutter pub run build_runner watch --delete-conflicting-outputs
+    description: Run all build runner to generate code.
+    packageFilters:
+      dependsOn: build_runner
 
   # Quality - lint
   lint:all:
@@ -65,7 +73,7 @@ scripts:
       dart pub global run melos run metrics:unused:files --no-select && \
       dart pub global run melos run metrics:unnecessary:nullable --no-select
     description: Run all static analysis checks.
-    
+
   metrics:analyze:
     run: |
       dart pub global run melos exec --fail-fast -- \
@@ -105,11 +113,11 @@ scripts:
       dart pub global run melos exec --fail-fast -- \
         "flutter test --coverage --coverage-path=./coverage/\$MELOS_PACKAGE_NAME.lcov.info --tags=golden --dart-define=CI=$CI"
     description: Run all tests on golden projects.
-    select-package:
-      dir-exists:
+    packageFilters:
+      dirExists:
         - test
       scope:
         - design_components
-        
+
   post_clean: >
     dart pub global run melos exec -- "flutter clean"

@@ -11,6 +11,8 @@ environment:
 dependencies:
   app_blocs:
     path: ../../packages/app_blocs
+  data_models:
+    path: ../../packages/data_models
   design_components:
     path: ../../packages/design_components
   design_icons:
