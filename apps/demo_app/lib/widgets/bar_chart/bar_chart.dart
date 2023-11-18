@@ -23,7 +23,9 @@ class BarChartSample2 extends HookWidget {
 
     final rawBarGroups =
         data.map((final e) => _makeGroupData(e.index, e.values)).toList();
-    var showingBarGroups = List<BarChartGroupData>.from(rawBarGroups);
+    final showingBarGroups = useState(
+      data.map((final e) => _makeGroupData(e.index, e.values)).toList(),
+    );
 
     void touchCallBack(
       final FlTouchEvent event,
@@ -31,7 +33,7 @@ class BarChartSample2 extends HookWidget {
     ) {
       if (response == null || response.spot == null) {
         touchedGroupIndex.value = -1;
-        showingBarGroups = rawBarGroups;
+        showingBarGroups.value = rawBarGroups;
 
         return;
       }
@@ -40,23 +42,23 @@ class BarChartSample2 extends HookWidget {
 
       if (!event.isInterestedForInteractions) {
         touchedGroupIndex.value = -1;
-        showingBarGroups = rawBarGroups;
+        showingBarGroups.value = rawBarGroups;
 
         return;
       }
-      showingBarGroups = rawBarGroups;
+      showingBarGroups.value = rawBarGroups;
       if (touchedGroupIndex.value != -1) {
         var sum = 0.0;
-        for (final rod in showingBarGroups[touchedGroupIndex.value].barRods) {
+        for (final rod
+            in showingBarGroups.value[touchedGroupIndex.value].barRods) {
           sum += rod.toY;
         }
-        final avg =
-            sum / showingBarGroups[touchedGroupIndex.value].barRods.length;
+        final avg = sum /
+            showingBarGroups.value[touchedGroupIndex.value].barRods.length;
 
-        showingBarGroups[touchedGroupIndex.value] =
-            showingBarGroups[touchedGroupIndex.value].copyWith(
-          barRods: showingBarGroups[touchedGroupIndex.value]
-              .barRods
+        showingBarGroups.value[touchedGroupIndex.value] =
+            showingBarGroups.value[touchedGroupIndex.value].copyWith(
+          barRods: showingBarGroups.value[touchedGroupIndex.value].barRods
               .map((final rod) => rod.copyWith(toY: avg))
               .toList(),
         );
@@ -102,7 +104,7 @@ class BarChartSample2 extends HookWidget {
           borderData: FlBorderData(
             show: false,
           ),
-          barGroups: showingBarGroups,
+          barGroups: showingBarGroups.value,
           gridData: FlGridData(show: false),
         ),
       ),
