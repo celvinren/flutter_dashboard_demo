@@ -13,7 +13,7 @@ class BarChartSample2 extends HookWidget {
     Color(0xffff5182),
     Color(0xffffcd3c),
   ];
-  static const _width = 7.0;
+  static const _width = 12.0;
 
   final List<BarChartDataModel> data;
 
@@ -165,6 +165,10 @@ class BarChartSample2 extends HookWidget {
         barRods: [
           for (int i = 0; i < dataList.length; i++)
             BarChartRodData(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(3),
+                topRight: Radius.circular(3),
+              ),
               toY: dataList[i],
               color: _colors[i],
               width: _width,
