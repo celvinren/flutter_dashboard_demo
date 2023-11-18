@@ -14,6 +14,10 @@ class FirebaseDataDto with _$FirebaseDataDto {
     required final List<Map<String, List<LineChartDataModel>>> lineChartData,
     required final List<BarChartDataModel> barChartData,
     required final List<double> pieChartData,
+    required final TopCardDataModel value1,
+    required final TopCardDataModel value2,
+    required final TopCardDataModel value3,
+    required final TopCardDataModel value4,
   }) = _FirebaseDataDto;
 
   ///

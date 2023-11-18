@@ -15,7 +15,7 @@ class LineChartCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => BlocSelector<DataRepository,
           DataRepositoryState, List<Map<String, List<LineChartDataModel>>>>(
-        selector: (final state) => state.lineChartData ?? [],
+        selector: (final state) => state.lineChartData,
         builder: (final context, final state) => Card(
           child: Padding(
             padding: const EdgeInsets.all(bodyPaddingVertical),

@@ -14,9 +14,9 @@ void main() async {
         widget: ValueInfoComponent(
           icon: SvgIcon.asset('assets/user_4_fill.svg'),
           title: 'User',
-          value: '2,765',
-          isUp: true,
-          percent: 1.2.toString(),
+          value: 2765,
+          isUp: 2765 >= 1000,
+          previousValue: 1000,
         ),
       ),
       Scenario(
@@ -24,9 +24,9 @@ void main() async {
         widget: ValueInfoComponent(
           icon: SvgIcon.asset('assets/user_4_fill.svg'),
           title: 'User',
-          value: '2,765',
+          value: 2765,
           isUp: false,
-          percent: 1.2.toString(),
+          previousValue: 3000,
         ),
       ),
     ],

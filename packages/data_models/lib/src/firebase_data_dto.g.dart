@@ -25,6 +25,10 @@ _$FirebaseDataDtoImpl _$$FirebaseDataDtoImplFromJson(
       pieChartData: (json['pieChartData'] as List<dynamic>)
           .map((e) => (e as num).toDouble())
           .toList(),
+      value1: TopCardDataModel.fromJson(json['value1'] as Map<String, dynamic>),
+      value2: TopCardDataModel.fromJson(json['value2'] as Map<String, dynamic>),
+      value3: TopCardDataModel.fromJson(json['value3'] as Map<String, dynamic>),
+      value4: TopCardDataModel.fromJson(json['value4'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$FirebaseDataDtoImplToJson(
@@ -33,4 +37,8 @@ Map<String, dynamic> _$$FirebaseDataDtoImplToJson(
       'lineChartData': instance.lineChartData,
       'barChartData': instance.barChartData,
       'pieChartData': instance.pieChartData,
+      'value1': instance.value1,
+      'value2': instance.value2,
+      'value3': instance.value3,
+      'value4': instance.value4,
     };

@@ -9,9 +9,17 @@ part 'data_repository_state.freezed.dart';
 class DataRepositoryState with _$DataRepositoryState {
   ///
   const factory DataRepositoryState.success({
-    @Default(<BarChartDataModel>[]) final List<BarChartDataModel>? barChartData,
+    @Default(<BarChartDataModel>[]) final List<BarChartDataModel> barChartData,
     @Default(<Map<String, List<LineChartDataModel>>>[])
-    final List<Map<String, List<LineChartDataModel>>>? lineChartData,
-    @Default(<double>[]) final List<double>? pieChartData,
+    final List<Map<String, List<LineChartDataModel>>> lineChartData,
+    @Default(<double>[]) final List<double> pieChartData,
+    @Default(TopCardDataModel(value: 0, previousValue: 1))
+    final TopCardDataModel value1,
+    @Default(TopCardDataModel(value: 0, previousValue: 1))
+    final TopCardDataModel value2,
+    @Default(TopCardDataModel(value: 0, previousValue: 1))
+    final TopCardDataModel value3,
+    @Default(TopCardDataModel(value: 0, previousValue: 1))
+    final TopCardDataModel value4,
   }) = Success;
 }
