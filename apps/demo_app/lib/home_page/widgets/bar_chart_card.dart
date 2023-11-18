@@ -15,7 +15,7 @@ class BarChartCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => BlocSelector<DataRepository,
           DataRepositoryState, List<BarChartDataModel>>(
-        selector: (final state) => state.barChartData ?? [],
+        selector: (final state) => state.barChartData,
         builder: (final context, final state) => state.isNotEmpty
             ? Card(
                 child: Padding(

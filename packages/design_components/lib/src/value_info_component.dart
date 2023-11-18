@@ -8,11 +8,13 @@ class ValueInfoComponent extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.value,
+    required this.previousValue,
     required this.isUp,
-    required this.percent,
+    // required this.percent,
     this.fontSizeOverride,
     super.key,
   });
+  static const _decimal = 2;
 
   ///
   final Widget icon;
@@ -21,7 +23,10 @@ class ValueInfoComponent extends StatelessWidget {
   final String title;
 
   ///
-  final String value;
+  final int value;
+
+  ///
+  final int previousValue;
 
   ///
   final bool isUp;
@@ -29,8 +34,8 @@ class ValueInfoComponent extends StatelessWidget {
   ///
   final double? fontSizeOverride;
 
-  ///
-  final String percent;
+  // ///
+  // final String percent;
 
   @override
   Widget build(final BuildContext context) {
@@ -68,7 +73,7 @@ class ValueInfoComponent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    value,
+                    value.toString(),
                     style: theme.textTheme.labelLarge?.copyWith(
                       color: theme.colorScheme.onSurface,
                       fontSize: fontSizeOverride,
@@ -78,7 +83,7 @@ class ValueInfoComponent extends StatelessWidget {
                     children: [
                       SvgIcon.asset(isUp ? 'assets/up.svg' : 'assets/down.svg'),
                       Text(
-                        '$percent%',
+                        '${((value - previousValue) / previousValue).toStringAsFixed(_decimal)}%',
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: isUp ? secondary : theme.colorScheme.error,
                         ),

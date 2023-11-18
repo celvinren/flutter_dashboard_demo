@@ -14,7 +14,7 @@ class PieChartCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) =>
       BlocSelector<DataRepository, DataRepositoryState, List<double>>(
-        selector: (final state) => state.pieChartData ?? const <double>[],
+        selector: (final state) => state.pieChartData,
         builder: (final context, final state) => Card(
           child: Padding(
             padding: const EdgeInsets.all(bodyPaddingVertical + 20),

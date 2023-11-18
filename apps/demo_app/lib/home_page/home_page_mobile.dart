@@ -1,9 +1,11 @@
-import 'dart:math';
-
+import 'package:data_models/data_models.dart';
 import 'package:design_components/design_components.dart';
 import 'package:design_icons/design_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../data_repository/data_repository.dart';
+import '../data_repository/data_repository_state.dart';
 import 'widgets/bar_chart_card.dart';
 import 'widgets/data_list_card.dart';
 import 'widgets/floating_button.dart';
@@ -69,42 +71,50 @@ class _TopCards extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    const percent = 100;
-    const decimal = 2;
     final child = Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        ValueInfoComponent(
-          icon: SvgIcon.asset('assets/user_4_fill.svg'),
-          title: 'User',
-          value: '2,765',
-          isUp: true,
-          fontSizeOverride: _valueFontSize,
-          percent: (Random().nextDouble() * percent).toStringAsFixed(decimal),
+        BlocSelector<DataRepository, DataRepositoryState, TopCardDataModel>(
+          selector: (final state) => state.value1,
+          builder: (final context, final state) => ValueInfoComponent(
+            icon: SvgIcon.asset('assets/user_4_fill.svg'),
+            title: 'User',
+            value: state.value,
+            isUp: state.value >= state.previousValue,
+            previousValue: state.previousValue,
+          ),
         ),
-        ValueInfoComponent(
-          icon: SvgIcon.asset('assets/chart_pie_fill.svg'),
-          title: 'New',
-          value: '253',
-          isUp: false,
-          fontSizeOverride: _valueFontSize,
-          percent: (Random().nextDouble() * percent).toStringAsFixed(decimal),
+        BlocSelector<DataRepository, DataRepositoryState, TopCardDataModel>(
+          selector: (final state) => state.value2,
+          builder: (final context, final state) => ValueInfoComponent(
+            icon: SvgIcon.asset(
+              'assets/chart_pie_fill.svg',
+            ),
+            title: 'New',
+            value: state.value,
+            isUp: state.value >= state.previousValue,
+            previousValue: state.previousValue,
+          ),
         ),
-        ValueInfoComponent(
-          icon: SvgIcon.asset('assets/tag_fill.svg'),
-          title: 'Average',
-          value: '896',
-          isUp: true,
-          fontSizeOverride: _valueFontSize,
-          percent: (Random().nextDouble() * percent).toStringAsFixed(decimal),
+        BlocSelector<DataRepository, DataRepositoryState, TopCardDataModel>(
+          selector: (final state) => state.value3,
+          builder: (final context, final state) => ValueInfoComponent(
+            icon: SvgIcon.asset('assets/tag_fill.svg'),
+            title: 'Average',
+            value: state.value,
+            isUp: state.value >= state.previousValue,
+            previousValue: state.previousValue,
+          ),
         ),
-        ValueInfoComponent(
-          icon: SvgIcon.asset('assets/wallet_4_fill.svg'),
-          title: 'Total',
-          value: '253',
-          isUp: false,
-          fontSizeOverride: _valueFontSize,
-          percent: (Random().nextDouble() * percent).toStringAsFixed(decimal),
+        BlocSelector<DataRepository, DataRepositoryState, TopCardDataModel>(
+          selector: (final state) => state.value4,
+          builder: (final context, final state) => ValueInfoComponent(
+            icon: SvgIcon.asset('assets/wallet_4_fill.svg'),
+            title: 'Total',
+            value: state.value,
+            isUp: state.value >= state.previousValue,
+            previousValue: state.previousValue,
+          ),
         ),
       ],
     );

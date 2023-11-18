@@ -25,6 +25,10 @@ class DataRepository extends Cubit<DataRepositoryState> {
             barChartData: firebaseData.barChartData,
             lineChartData: firebaseData.lineChartData,
             pieChartData: firebaseData.pieChartData,
+            value1: firebaseData.value1,
+            value2: firebaseData.value2,
+            value3: firebaseData.value3,
+            value4: firebaseData.value4,
           ),
         );
       }

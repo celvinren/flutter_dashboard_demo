@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:app_blocs/app_blocs.dart';
 import 'package:design_components/design_components.dart';
 import 'package:design_icons/design_icons.dart';
@@ -95,34 +93,32 @@ class HomePage extends StatelessWidget {
                       ValueInfoComponent(
                         icon: SvgIcon.asset('assets/user_4_fill.svg'),
                         title: 'User',
-                        value: '2,765',
-                        isUp: true,
-                        percent: (Random().nextDouble() * percent)
-                            .toStringAsFixed(decimal),
+                        value: 2765,
+                        isUp: 2765 >= 1000,
+                        previousValue: 1000,
                       ),
                       ValueInfoComponent(
-                        icon: SvgIcon.asset('assets/chart_pie_fill.svg'),
+                        icon: SvgIcon.asset(
+                          'assets/chart_pie_fill.svg',
+                        ),
                         title: 'New',
-                        value: '253',
-                        isUp: false,
-                        percent: (Random().nextDouble() * percent)
-                            .toStringAsFixed(decimal),
+                        value: 253,
+                        isUp: 253 >= 300,
+                        previousValue: 300,
                       ),
                       ValueInfoComponent(
                         icon: SvgIcon.asset('assets/tag_fill.svg'),
                         title: 'Average',
-                        value: '896',
-                        isUp: true,
-                        percent: (Random().nextDouble() * percent)
-                            .toStringAsFixed(decimal),
+                        value: 896,
+                        isUp: 896 >= 1500,
+                        previousValue: 1500,
                       ),
                       ValueInfoComponent(
                         icon: SvgIcon.asset('assets/wallet_4_fill.svg'),
                         title: 'Total',
-                        value: '253',
-                        isUp: false,
-                        percent: (Random().nextDouble() * percent)
-                            .toStringAsFixed(decimal),
+                        value: 253,
+                        isUp: 253 >= 400,
+                        previousValue: 400,
                       ),
                     ],
                   ),
