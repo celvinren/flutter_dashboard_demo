@@ -27,6 +27,16 @@ class BarChartSample2 extends HookWidget {
       data.map((final e) => _makeGroupData(e.index, e.values)).toList(),
     );
 
+    useEffect(
+      () {
+        showingBarGroups.value =
+            data.map((final e) => _makeGroupData(e.index, e.values)).toList();
+
+        return null;
+      },
+      <Object>[showingBarGroups.value],
+    );
+
     void touchCallBack(
       final FlTouchEvent event,
       final BarTouchResponse? response,

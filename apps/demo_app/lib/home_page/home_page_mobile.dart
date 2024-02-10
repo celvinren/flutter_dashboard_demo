@@ -48,11 +48,11 @@ class _Body extends StatelessWidget {
                 const DataListCard(),
                 const SizedBox(
                   height: 300,
-                  child: LineChartCard(),
+                  child: BarChartCard(),
                 ),
                 const SizedBox(
                   height: 300,
-                  child: BarChartCard(),
+                  child: LineChartCard(),
                 ),
                 SizedBox(
                   width: constraint.maxWidth,
